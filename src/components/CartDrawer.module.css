@@ -1,0 +1,220 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: var(--z-modal-backdrop);
+    animation: fadeIn 0.3s ease;
+}
+
+.drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 450px;
+    background: var(--color-bg-secondary);
+    border-left: 1px solid var(--color-border);
+    z-index: var(--z-modal);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-xl);
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-2xl);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    transition: color var(--transition-base);
+    line-height: 1;
+}
+
+.closeBtn:hover {
+    color: var(--color-text-primary);
+}
+
+.content {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.empty {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3xl);
+    text-align: center;
+}
+
+.emptyIcon {
+    font-size: 4rem;
+    opacity: 0.3;
+    margin-bottom: var(--spacing-md);
+}
+
+.emptyText {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.emptySubtext {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.items {
+    flex-grow: 1;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+}
+
+.itemHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.itemName {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    flex-grow: 1;
+}
+
+.removeBtn {
+    background: none;
+    border: none;
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    padding: 4px;
+    transition: transform var(--transition-base);
+    line-height: 1;
+}
+
+.removeBtn:hover {
+    transform: scale(1.2);
+}
+
+.itemDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.itemPrice {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.itemTotal {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.itemFeatures {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+}
+
+.itemFeatures li {
+    padding: 2px 0;
+}
+
+.footer {
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-primary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+}
+
+.totalLabel {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+}
+
+.totalAmount {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@media (max-width: 768px) {
+    .drawer {
+        max-width: 100%;
+    }
+}

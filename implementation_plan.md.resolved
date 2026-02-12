@@ -1,0 +1,267 @@
+# Catalog / Portfolio — خطة التنفيذ
+
+بناء كتالوج/بورتفوليو احترافي بتصميم عصري يعرض 3 مستويات خدمات، المشاريع السابقة، والمهارات التقنية، مع تكامل WhatsApp للطلبات. الموقع موجّه لعملاء عرب غير تقنيين ويدعم RTL بالكامل.
+
+## التقنيات
+
+| التقنية | الاستخدام |
+|---------|-----------|
+| Next.js 15 (App Router) | إطار العمل الأساسي |
+| Redux Toolkit | إدارة الحالة (السلة، الخدمات) |
+| JavaScript فقط | بدون TypeScript |
+| CSS Modules + Variables | التنسيق (Mobile First) |
+| WhatsApp Link API | إرسال الطلبات |
+
+---
+
+## هيكل المجلدات
+
+```
+كاتالوج/
+├── src/
+│   ├── app/
+│   │   ├── layout.js          # Root layout (RTL, fonts, Redux Provider)
+│   │   ├── page.js            # Landing page (Hero + Services + Projects + Skills + Contact)
+│   │   ├── globals.css        # Design system + global styles
+│   │   └── projects/
+│   │       └── [id]/
+│   │           └── page.js    # Project detail page
+│   ├── components/
+│   │   ├── Navbar.jsx         # Navigation bar
+│   │   ├── Hero.jsx           # Hero section
+│   │   ├── ServiceCard.jsx    # Service tier card
+│   │   ├── PricingSection.jsx # 3-tier pricing display
+│   │   ├── ProjectCard.jsx    # Project gallery card
+│   │   ├── ProjectsGallery.jsx# Projects grid
+│   │   ├── SkillsSection.jsx  # Skills display
+│   │   ├── ContactSection.jsx # Contact + WhatsApp CTA
+│   │   ├── CartDrawer.jsx     # Side cart drawer
+│   │   ├── CartItem.jsx       # Single cart item
+│   │   ├── Footer.jsx         # Footer
+│   │   └── WhatsAppFAB.jsx    # Floating WhatsApp button
+│   ├── features/
+│   │   ├── cart/
+│   │   │   └── cartSlice.js   # Cart state (add, remove, clear)
+│   │   └── services/
+│   │       └── servicesSlice.js # Selected service tier
+│   ├── store/
+│   │   ├── store.js           # Redux store configuration
+│   │   └── StoreProvider.jsx  # Client-side Redux provider
+│   ├── data/
+│   │   ├── projects.js        # Projects data (10-30 items)
+│   │   ├── services.js        # 3 service tiers with features
+│   │   └── skills.js          # Skills data
+│   └── utils/
+│       └── whatsapp.js        # WhatsApp message builder + link opener
+├── public/
+│   └── images/                # Project screenshots
+├── next.config.mjs
+├── package.json
+└── jsconfig.json
+```
+
+---
+
+## تدفق المستخدم (User Flow)
+
+```mermaid
+graph TD
+    A["🏠 الصفحة الرئيسية"] --> B["🎯 Hero Section"]
+    B --> C["💼 الخدمات (3 مستويات)"]
+    C --> D{"اختيار خدمة"}
+    D -->|عرض فقط| E["📱 WhatsApp مباشر"]
+    D -->|متوسطة| F["🛒 إضافة للسلة"]
+    D -->|متكاملة| G["🛒 إضافة للسلة"]
+    F --> H["📋 مراجعة السلة"]
+    G --> H
+    H --> I["📱 إرسال عبر WhatsApp"]
+    A --> J["📂 المشاريع"]
+    J --> K["📄 تفاصيل المشروع"]
+    K --> E
+```
+
+---
+
+## Redux State Design
+
+```js
+// store shape
+{
+  cart: {
+    items: [
+      {
+        id: "service-2",
+        name: "موقع بميزات متوسطة",
+        price: 500,
+        quantity: 1,
+        features: ["سلة مشتريات", "بحث + فلترة", "لوحة تحكم"]
+      }
+    ],
+    isOpen: false    // cart drawer visibility
+  },
+  services: {
+    selectedTier: null  // "basic" | "standard" | "premium"
+  }
+}
+```
+
+---
+
+## Proposed Changes
+
+### App Shell & Layout
+
+#### [NEW] [layout.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/app/layout.js)
+- Root layout with Arabic RTL support (`dir="rtl"`, `lang="ar"`)
+- Google Fonts (Cairo for Arabic)
+- Redux `StoreProvider` wrapper
+- Global metadata (title, description, viewport)
+
+#### [NEW] [globals.css](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/app/globals.css)
+- CSS custom properties design system (colors, spacing, typography, shadows)
+- Dark premium theme with gradients
+- Mobile-first responsive breakpoints
+- RTL-aware utilities
+- Smooth animations and transitions
+
+#### [NEW] [page.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/app/page.js)
+- Single-page layout composing all sections: Hero → Services → Projects → Skills → Contact
+
+---
+
+### Components
+
+#### [NEW] [Navbar.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/Navbar.jsx)
+- Sticky navbar with smooth scroll links
+- Cart icon with item count badge
+- Mobile hamburger menu
+
+#### [NEW] [Hero.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/Hero.jsx)
+- Bold Arabic headline + subtitle
+- Animated gradient background
+- CTA buttons ("تصفّح الخدمات" / "تواصل معنا")
+
+#### [NEW] [PricingSection.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/PricingSection.jsx)
+- 3-column (mobile: stack) pricing cards
+- تمييز "الأكثر طلبًا" badge on middle tier
+
+#### [NEW] [ServiceCard.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/ServiceCard.jsx)
+- Individual service tier card with feature list, price, CTA
+- Tier 1: "اطلب عبر واتساب" button only
+- Tier 2 & 3: "أضف للسلة" + WhatsApp button
+
+#### [NEW] [ProjectsGallery.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/ProjectsGallery.jsx)
+- Responsive grid of project cards with hover effects
+
+#### [NEW] [ProjectCard.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/ProjectCard.jsx)
+- Project thumbnail, title, tags, "عرض التفاصيل" link
+
+#### [NEW] [SkillsSection.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/SkillsSection.jsx)
+- Tech skills with animated progress bars or icon grid
+
+#### [NEW] [ContactSection.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/ContactSection.jsx)
+- WhatsApp CTA + contact info
+
+#### [NEW] [CartDrawer.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/CartDrawer.jsx)
+- Slide-in side drawer showing cart items
+- Total price + "أرسل الطلب عبر واتساب" button
+
+#### [NEW] [WhatsAppFAB.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/WhatsAppFAB.jsx)
+- Floating action button (bottom-left for RTL) with pulse animation
+
+#### [NEW] [Footer.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/components/Footer.jsx)
+- Copyright, social links, quick navigation
+
+---
+
+### Redux State Management
+
+#### [NEW] [store.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/store/store.js)
+- `configureStore` with cart and services reducers
+
+#### [NEW] [StoreProvider.jsx](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/store/StoreProvider.jsx)
+- Client component wrapping `<Provider store={store}>`
+
+#### [NEW] [cartSlice.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/features/cart/cartSlice.js)
+- Actions: `addItem`, `removeItem`, `clearCart`, `toggleCart`
+- Selectors: `selectCartItems`, `selectCartTotal`, `selectCartCount`
+
+#### [NEW] [servicesSlice.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/features/services/servicesSlice.js)
+- Actions: `selectTier`
+- Tracks which pricing tier the user is interested in
+
+---
+
+### Data Layer
+
+#### [NEW] [projects.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/data/projects.js)
+- Array of 6 sample projects with id, title, description, image, tags, link
+
+#### [NEW] [services.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/data/services.js)
+- 3 service tiers: basic, standard, premium with features list and prices
+
+#### [NEW] [skills.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/data/skills.js)
+- Skills array with name, icon, proficiency level
+
+---
+
+### Utilities
+
+#### [NEW] [whatsapp.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/utils/whatsapp.js)
+- `sendToWhatsApp(message)` — opens wa.me link
+- `buildOrderMessage(items, total)` — formats cart as readable Arabic message
+- `buildServiceInquiry(serviceName)` — formats service request message
+
+---
+
+### Project Detail Page
+
+#### [NEW] [page.js](file:///c:/Users/KALAJI-BILGISAYAR/Desktop/مشاريع%20فرونت%20اند/كاتالوج/src/app/projects/[id]/page.js)
+- Dynamic route showing full project details
+- Image, description, tech stack, live link
+- "اطلب مشروع مشابه" WhatsApp CTA
+
+---
+
+## Design System
+
+| Token | Value |
+|-------|-------|
+| Primary | `#6C63FF` (Purple) |
+| Secondary | `#00D9FF` (Cyan) |
+| Accent | `#FF6B6B` (Coral) |
+| Background | `#0a0a1a` (Deep Dark) |
+| Surface | `#12122a` |
+| Text Primary | `#f0f0f0` |
+| Text Secondary | `#a0a0b0` |
+| Font Family | Cairo (Arabic), Inter (Latin) |
+| Border Radius | `12px` (cards), `8px` (buttons) |
+
+---
+
+## نقاط قابلية التوسعة
+
+1. **إضافة لغة ثانية** — البنية تدعم i18n مستقبلاً بفصل النصوص في data/
+2. **بوابة دفع** — Cart slice جاهز للتكامل مع Stripe/PayPal
+3. **CMS** — يمكن استبدال data/ بـ API من Headless CMS
+4. **لوحة تحكم** — إضافة `/admin` route مع حماية auth
+5. **قاعدة بيانات** — الانتقال من static data إلى MongoDB/Supabase
+
+---
+
+## Verification Plan
+
+### Automated
+- `npm run build` — يجب أن ينجح بدون أخطاء
+- `npm run dev` — يعمل المحلي بدون مشاكل
+
+### Browser Testing
+- فتح الصفحة الرئيسية والتحقق من عرض جميع الأقسام
+- اختبار زر WhatsApp (يفتح wa.me بالرسالة الصحيحة)
+- اختبار إضافة خدمة للسلة وإرسال الطلب
+- اختبار الاستجابة على أحجام شاشات مختلفة
+- التحقق من دعم RTL
+
+### Manual (User)
+- مراجعة التصميم والألوان والخطوط
+- اختبار على هاتف حقيقي
