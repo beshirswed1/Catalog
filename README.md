@@ -206,9 +206,9 @@ npm run build
 
 ## 📞 التواصل
 
-- 📧 Email: info@portfolio.com
-- 📱 WhatsApp: +966 50 000 0000
+- 📧 Email: beshirswed07@gmail.com
+- 📱 WhatsApp: +905377906230
 
 ---
 
-صُنع بـ ❤️ في السعودية
+صُنع بـشير
