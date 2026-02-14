@@ -84,6 +84,12 @@
     width: 100%;
 }
 
+.navActions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
 .cartButton {
     position: relative;
     background: var(--color-surface);
@@ -157,7 +163,7 @@
     transition: color var(--transition-base);
     font-family: var(--font-family-primary);
     padding: var(--spacing-sm);
-    text-align: right;
+    text-align: start;
     border-radius: var(--radius-sm);
 }
 

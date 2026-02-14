@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getProjectById } from '@/data/projects';
 import { sendProjectInquiry } from '@/utils/whatsapp';
 import { getIcon } from '@/utils/icons';
+import { useTranslation } from '@/hooks/useTranslation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppFAB from '@/components/WhatsAppFAB';
@@ -16,21 +17,32 @@ import { use } from 'react';
 export default function ProjectPage({ params }) {
     const { id } = use(params);
     const project = getProjectById(id);
+    const { t, currentLang } = useTranslation();
 
     if (!project) {
         return (
             <main>
                 <Navbar />
                 <div className="container" style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 'var(--spacing-lg)' }}>
-                    <h1>المشروع غير موجود</h1>
+                    <h1>{t.projectDetail.notFound}</h1>
                     <Link href="/" className="btn btn-primary">
-                        العودة للرئيسية
+                        {t.projectDetail.backHome}
                     </Link>
                 </div>
                 <Footer />
             </main>
         );
     }
+
+    // Helper to get translated field or fallback to Arabic
+    const getField = (fieldName) => {
+        const langSuffix = currentLang.charAt(0).toUpperCase() + currentLang.slice(1); // ar -> Ar, en -> En, tr -> Tr
+        return project[`${fieldName}${langSuffix}`] || project[`${fieldName}Ar`];
+    };
+
+    const displayTitle = getField('title');
+    const displayDescription = getField('description');
+    const displayFeatures = getField('features') || [];
 
     return (
         <main>
@@ -40,33 +52,33 @@ export default function ProjectPage({ params }) {
                 <div className="container">
                     <Link href="/" className={styles.backLink}>
                         <FontAwesomeIcon icon={getIcon('faArrowRight')} />
-                        <span>العودة للمشاريع</span>
+                        <span>{t.projectDetail.backToProjects}</span>
                     </Link>
 
                     <div className={styles.header}>
                         <div className={styles.headerContent}>
                             <div className={styles.badge}>
-                                {project.category === 'basic' && (
+                                {(project.category === 'productivity' || project.category === 'portfolio') && (
                                     <>
                                         <FontAwesomeIcon icon={getIcon('faMobileAlt')} />
-                                        <span>كتالوج فقط</span>
+                                        <span>{t.projectDetail.catalogOnly}</span>
                                     </>
                                 )}
-                                {project.category === 'standard' && (
+                                {(project.category === 'ecommerce' || project.category === 'health') && (
                                     <>
                                         <FontAwesomeIcon icon={getIcon('faRocket')} />
-                                        <span>ميزات متوسطة</span>
+                                        <span>{t.projectDetail.mediumFeatures}</span>
                                     </>
                                 )}
-                                {project.category === 'premium' && (
+                                {(project.category === 'education') && (
                                     <>
                                         <FontAwesomeIcon icon={getIcon('faStar')} />
-                                        <span>متكامل</span>
+                                        <span>{t.projectDetail.integrated}</span>
                                     </>
                                 )}
                             </div>
 
-                            <h1 className={styles.title}>{project.title}</h1>
+                            <h1 className={styles.title}>{displayTitle}</h1>
                             <div className={styles.meta}>
                                 <div className={styles.metaItem}>
                                     <FontAwesomeIcon icon={getIcon('faCalendar')} className={styles.metaIcon} />
@@ -74,7 +86,7 @@ export default function ProjectPage({ params }) {
                                 </div>
                                 <div className={styles.metaItem}>
                                     <FontAwesomeIcon icon={getIcon('faTag')} className={styles.metaIcon} />
-                                    <span>{project.tags.length} تقنية</span>
+                                    <span>{project.tags.length} {t.projectDetail.technologies}</span>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +100,7 @@ export default function ProjectPage({ params }) {
                         <div className={styles.imageWrapper}>
                             <Image
                                 src={project.image}
-                                alt={project.title}
+                                alt={displayTitle}
                                 fill
                                 className={styles.projectImage}
                             />
@@ -100,15 +112,15 @@ export default function ProjectPage({ params }) {
                         <section className={styles.section}>
                             <h2 className={styles.sectionTitle}>
                                 <FontAwesomeIcon icon={getIcon('faList')} className={styles.sectionIcon} />
-                                <span>نظرة عامة</span>
+                                <span>{t.projectDetail.overview}</span>
                             </h2>
-                            <p className={styles.text}>{project.description}</p>
+                            <p className={styles.text}>{displayDescription}</p>
                         </section>
 
                         <section className={styles.section}>
                             <h2 className={styles.sectionTitle}>
                                 <FontAwesomeIcon icon={getIcon('faCogs')} className={styles.sectionIcon} />
-                                <span>التقنيات المستخدمة</span>
+                                <span>{t.projectDetail.techUsed}</span>
                             </h2>
                             <div className={styles.tags}>
                                 {project.tags.map((tag, index) => (
@@ -122,10 +134,10 @@ export default function ProjectPage({ params }) {
                         <section className={styles.section}>
                             <h2 className={styles.sectionTitle}>
                                 <FontAwesomeIcon icon={getIcon('faStar')} className={styles.sectionIcon} />
-                                <span>المميزات الرئيسية</span>
+                                <span>{t.projectDetail.mainFeatures}</span>
                             </h2>
                             <ul className={styles.features}>
-                                {project.features.map((feature, index) => (
+                                {displayFeatures.map((feature, index) => (
                                     <li key={index} className={styles.feature}>
                                         <FontAwesomeIcon icon={getIcon('faCheck')} className={styles.checkIcon} />
                                         <span>{feature}</span>
@@ -135,20 +147,20 @@ export default function ProjectPage({ params }) {
                         </section>
 
                         <section className={styles.cta}>
-                            <h3 className={styles.ctaTitle}>هل تريد مشروعاً مشابهاً؟</h3>
+                            <h3 className={styles.ctaTitle}>{t.projectDetail.wantSimilar}</h3>
                             <p className={styles.ctaText}>
-                                تواصل معنا الآن لمناقشة مشروعك والحصول على عرض سعر مخصص
+                                {t.projectDetail.wantSimilarText}
                             </p>
                             <div className={styles.ctaButtons}>
                                 <button
-                                    onClick={() => sendProjectInquiry(project.title)}
+                                    onClick={() => sendProjectInquiry(project.titleAr, currentLang)}
                                     className="btn btn-primary btn-lg"
                                 >
-                                    <span>اطلب مشروع مشابه</span>
+                                    <span>{t.projectDetail.requestSimilar}</span>
                                     <FontAwesomeIcon icon={getIcon('faComments')} />
                                 </button>
                                 <Link href="/#services" className="btn btn-secondary btn-lg">
-                                    <span>تصفح الخدمات</span>
+                                    <span>{t.projectDetail.browseServices}</span>
                                     <FontAwesomeIcon icon={getIcon('faRocket')} />
                                 </Link>
                             </div>

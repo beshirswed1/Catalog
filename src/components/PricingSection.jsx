@@ -4,16 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { services } from '@/data/services';
 import ServiceCard from './ServiceCard';
 import { getIcon } from '@/utils/icons';
+import { useTranslation } from '@/hooks/useTranslation';
 import styles from './PricingSection.module.css';
 
 export default function PricingSection() {
+    const { t } = useTranslation();
+
     return (
         <section id="services" className="section">
             <div className="container">
                 <div className={styles.header}>
-                    <h2 className="section-title">خدماتنا</h2>
+                    <h2 className="section-title">{t.pricing.title}</h2>
                     <p className={styles.subtitle}>
-                        اختر الباقة المناسبة لاحتياجاتك - من كتالوج بسيط إلى منصة متكاملة
+                        {t.pricing.subtitle}
                     </p>
                 </div>
 
@@ -26,9 +29,9 @@ export default function PricingSection() {
                 <div className={styles.note}>
                     <FontAwesomeIcon icon={getIcon('faLightbulb')} className={styles.noteIcon} />
                     <div>
-                        <h4 className={styles.noteTitle}>هل تحتاج شيئاً مخصصاً؟</h4>
+                        <h4 className={styles.noteTitle}>{t.pricing.customTitle}</h4>
                         <p className={styles.noteText}>
-                            نحن نقدم حلول مخصصة تماماً لاحتياجاتك. تواصل معنا لمناقشة مشروعك!
+                            {t.pricing.customText}
                         </p>
                     </div>
                 </div>

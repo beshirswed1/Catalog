@@ -1,9 +1,19 @@
+'use client';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getIcon } from '@/utils/icons';
+import { useTranslation } from '@/hooks/useTranslation';
+import { sendGeneralInquiry } from '@/utils/whatsapp';
 import styles from './Footer.module.css';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const { t, currentLang } = useTranslation();
+
+    const handleWhatsAppClick = (e) => {
+        e.preventDefault();
+        sendGeneralInquiry(currentLang);
+    };
 
     return (
         <footer className={styles.footer}>
@@ -12,32 +22,32 @@ export default function Footer() {
                     <div className={styles.section}>
                         <div className={styles.logo}>
                             <FontAwesomeIcon icon={getIcon('faBriefcase')} className={styles.logoIcon} />
-                            <span className={styles.logoText}>بورتفوليو</span>
+                            <span className={styles.logoText}>{t.footer.logoText}</span>
                         </div>
                         <p className={styles.description}>
-                            نبني مواقع ويب احترافية تحقق أهدافك وتنمي أعمالك
+                            {t.footer.description}
                         </p>
                     </div>
 
                     <div className={styles.section}>
-                        <h4 className={styles.sectionTitle}>روابط سريعة</h4>
+                        <h4 className={styles.sectionTitle}>{t.footer.quickLinks}</h4>
                         <ul className={styles.links}>
-                            <li><a href="#hero">الرئيسية</a></li>
-                            <li><a href="#services">الخدمات</a></li>
-                            <li><a href="#projects">المشاريع</a></li>
-                            <li><a href="#skills">المهارات</a></li>
-                            <li><a href="#contact">تواصل معنا</a></li>
+                            <li><a href="#hero">{t.nav.home}</a></li>
+                            <li><a href="#services">{t.nav.services}</a></li>
+                            <li><a href="#projects">{t.nav.projects}</a></li>
+                            <li><a href="#skills">{t.nav.skills}</a></li>
+                            <li><a href="#contact">{t.nav.contact}</a></li>
                         </ul>
                     </div>
 
                     <div className={styles.section}>
-                        <h4 className={styles.sectionTitle}>تواصل معنا</h4>
+                        <h4 className={styles.sectionTitle}>{t.footer.contactUs}</h4>
 
                         <ul className={styles.contact}>
                             <li>
                                 <FontAwesomeIcon icon={getIcon('faEnvelope')} />
                                 <a
-                                    href="mailto:beshirswed07@gmail.com?subject=استفسار عن مشروع&body=مرحباً، شاهدت البورتفوليو الخاص بك وأرغب بالتواصل."
+                                    href="mailto:beshirswed07@gmail.com"
                                     className={styles.contactLink}
                                 >
                                     beshirswed07@gmail.com
@@ -47,9 +57,8 @@ export default function Footer() {
                             <li>
                                 <FontAwesomeIcon icon={getIcon('faPhone')} />
                                 <a
-                                    href="https://wa.me/905377906230?text=مرحباً، أرغب بالاستفسار عن مشروع."
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    href="#"
+                                    onClick={handleWhatsAppClick}
                                     className={styles.contactLink}
                                 >
                                     +90 537 790 62 30
@@ -72,12 +81,12 @@ export default function Footer() {
 
 
                     <div className={styles.section}>
-                        <h4 className={styles.sectionTitle}>تابعنا</h4>
+                        <h4 className={styles.sectionTitle}>{t.footer.followUs}</h4>
                         <div className={styles.social}>
                             <a href="https://x.com/BeshirSwed" className={styles.socialLink} aria-label="Twitter">
                                 <FontAwesomeIcon icon={getIcon('faTwitter')} />
                             </a>
-                            <a href="https://www.linkedin.com/in/beshir-swed-073784398?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BFJS0Tx4PQMqrT%2BscgBvaqQ%3D%3D" className={styles.socialLink} aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/beshir-swed-073784398" className={styles.socialLink} aria-label="LinkedIn">
                                 <FontAwesomeIcon icon={getIcon('faLinkedin')} />
                             </a>
                             <a href="https://github.com/beshirswed1" className={styles.socialLink} aria-label="GitHub">
@@ -92,10 +101,10 @@ export default function Footer() {
 
                 <div className={styles.bottom}>
                     <p className={styles.copyright}>
-                        © {currentYear} جميع الحقوق محفوظة
+                        © {currentYear} {t.footer.copyright}
                     </p>
                     <p className={styles.credits}>
-                        صُنع بواسطة بشير سويد <FontAwesomeIcon icon={getIcon('faHeart')} className={styles.heart} />
+                        {t.footer.madeBy} <FontAwesomeIcon icon={getIcon('faHeart')} className={styles.heart} />
                     </p>
                 </div>
             </div>

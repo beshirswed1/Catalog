@@ -1,261 +1,358 @@
-// المشاريع السابقة
+
+// المشاريع السابقة - مع دعم اللغات (العربية، التركية، الإنجليزية)
 export const projects = [
     {
         id: 1,
-        title: 'أثر – إدارة مكتبتك الإلكترونية',
+        titleAr: 'أثر – إدارة مكتبتك الإلكترونية',
+        titleTr: 'Athar – Kişisel Dijital Kütüphane Yöneticisi',
         titleEn: 'Athar – Personal Digital Library Manager',
-        description: 'منصة ويب متكاملة لإدارة المكتبة الشخصية رقمياً، تعالج مشكلة فقدان تتبع الكتب المقروءة والمخطط لقراءتها. توفر نظام تصنيف وتتبع حالة القراءة (مخطط – قيد القراءة – منتهٍ) مع إحصائيات دقيقة لعدد الكتب وسجل النشاط. تعتمد على Next.js كبنية Frontend، Redux Toolkit لإدارة الحالة المركزية، وFirebase (Authentication + Firestore) كباك إند بدون خادم. تم تصميمها بهيكلية معيارية قابلة للتوسع مع دعم المصادقة الآمنة، تخزين سحابي فوري، وتحديثات لحظية. النظام يوازن بين الأداء وسهولة الاستخدام مع دعم الوضع الليلي وتجربة استخدام متجاوبة بالكامل.',
+        descriptionAr: 'منصة ويب متكاملة لإدارة المكتبة الشخصية رقمياً، تعالج مشكلة فقدان تتبع الكتب المقروءة والمخطط لقراءتها. توفر نظام تصنيف وتتبع حالة القراءة مع إحصائيات دقيقة. تعتمد على Next.js و Redux Toolkit و Firebase.',
+        descriptionTr: 'Kişisel dijital kütüphanenizi yönetmek için kapsamlı bir web platformu. Okunan ve okunması planlanan kitapları istatistiklerle takip eder. Next.js, Redux Toolkit ve Firebase ile geliştirilmiştir.',
+        descriptionEn: 'A comprehensive web platform for managing your personal digital library. It solves the problem of tracking read and planned books with accurate statistics. Built with Next.js, Redux Toolkit, and Firebase.',
         image: '/images/athar.png',
-        tags: [
-            'Next.js',
-            'React',
-            'Redux Toolkit',
-            'Firebase',
-            'Firestore',
-            'Authentication',
-            'TailwindCSS',
-            'State Management'
-        ],
-        category: 'Web Application / Productivity',
-        link: '',
-        features: [
-            'نظام تسجيل دخول وتسجيل خروج باستخدام Firebase Authentication',
-            'إدارة حالات الكتب: مخطط للقراءة، قيد القراءة، منتهٍ',
-            'إحصائيات ديناميكية لعدد الكتب وسجل التقدم',
-            'إضافة مراجعات شخصية لكل كتاب منتهٍ',
-            'استكشاف مكتبة عامة تحتوي على ~250 كتاب مصنف',
-            'حفظ الكتب في مكتبتك الخاصة بضغطة واحدة',
-            'لوحة بروفايل شخصية مع بيانات المستخدم',
-            'تخزين سحابي لحظي عبر Firestore',
-            'إدارة حالة مركزية باستخدام Redux Toolkit',
+        tags: ['Next.js', 'React', 'Redux Toolkit', 'Firebase', 'Firestore', 'TailwindCSS'],
+        category: 'productivity',
+        year: 2025,
+        featuresAr: [
+            'نظام تسجيل دخول باستخدام Firebase',
+            'إدارة حالات الكتب: مخطط، قيد القراءة، منتهٍ',
+            'إحصائيات ديناميكية لسجل التقدم',
+            'إضافة مراجعات شخصية',
             'وضع ليلي (Dark Mode)',
-            'تصميم متجاوب 100% لجميع الشاشات'
+            'تصميم متجاوب 100%'
         ],
-        year: 2025
+        featuresTr: [
+            'Firebase ile giriş sistemi',
+            'Kitap durum yönetimi: Planlanan, Okunuyor, Tamamlandı',
+            'Dinamik ilerleme istatistikleri',
+            'Kişisel inceleme ekleme',
+            'Gece Modu (Dark Mode)',
+            '%100 Responsive tasarım'
+        ],
+        featuresEn: [
+            'Authentication with Firebase',
+            'Book status management: Planned, Reading, Finished',
+            'Dynamic progress statistics',
+            'Adding personal reviews',
+            'Dark Mode support',
+            '100% Responsive design'
+        ]
     },
 
     {
         id: 2,
-        title: 'متجر إلكتروني متكامل مع لوحة تحكم إدارية',
-        titleEn: 'Full-Stack E-Commerce Platform with Admin Dashboard',
-        description: 'منصة تجارة إلكترونية متكاملة تعالج مشكلة المتاجر غير المنظمة وضعف قابلية الإدارة والتوسع. تم تصميم النظام بهيكلية معيارية تعتمد على React وRedux Toolkit لإدارة الحالة مركزياً، مع فصل واضح بين طبقة العرض وطبقة منطق الأعمال وطبقة البيانات. يوفر النظام تصفية متقدمة متعددة المعايير، تصنيف ديناميكي للمنتجات، وإدارة سلة شراء بكفاءة عالية. تتضمن المنصة لوحة تحكم إدارية لإدارة المنتجات (CRUD)، المستخدمين، الأرباح، والإعدادات. تم استخدام Mock API لمحاكاة بيئة إنتاج حقيقية، وAxios لإدارة طلبات HTTP، مع تحسين الأداء عبر Lazy Loading وتقليل إعادة التصيير. يدعم النظام تسجيل دخول أساسي، وهيكل قابل للتوسع نحو ربط Backend فعلي مستقبلاً.',
+        titleAr: 'متجر إلكتروني مع لوحة تحكم',
+        titleTr: 'Yönetim Panelli E-Ticaret Platformu',
+        titleEn: 'E-commerce Platform with Admin Dashboard',
+        descriptionAr: 'منصة تجارة إلكترونية متكاملة مع فصل واضح بين طبقة العرض وطبقة البيانات. يوفر تصفية متقدمة، تصنيف ديناميكي، وإدارة سلة شراء، مع لوحة تحكم إدارية شاملة.',
+        descriptionTr: 'Sunum ve veri katmanları arasında net bir ayrım sunan eksiksiz bir e-ticaret platformu. Gelişmiş filtreleme, dinamik kategorizasyon, sepet yönetimi ve kapsamlı bir yönetim paneli içerir.',
+        descriptionEn: 'A complete e-commerce platform with a clear separation between presentation and data layers. Features advanced filtering, dynamic categorization, cart management, and a comprehensive admin dashboard.',
         image: '/images/ecommerce.png',
-        tags: ['React', 'Redux Toolkit', 'JavaScript', 'TailwindCSS', 'Axios', 'E-commerce', 'Admin Dashboard'],
+        tags: ['React', 'Redux Toolkit', 'TailwindCSS', 'Axios', 'E-commerce'],
         category: 'ecommerce',
-        link: '',
-        features: [
-            'نظام تصفية متقدم متعدد المعايير (السعر، الفئة، البحث، الترتيب)',
-            'تصنيف ديناميكي للمنتجات عبر Sidebar',
-            'إدارة سلة شراء باستخدام Redux Toolkit',
-            'نظام تسجيل دخول بسيط مع إدارة حالة المستخدم',
-            'لوحة تحكم إدارية لإدارة المنتجات (إضافة / تعديل / حذف)',
-            'إدارة المستخدمين والصلاحيات',
-            'متابعة الأرباح وإحصائيات أساسية',
-            'إدارة إعدادات المتجر',
-            'هيكلية قابلة للتوسع لربط Backend حقيقي مستقبلاً'
+        year: 2025,
+        featuresAr: [
+            'نظام تصفية متقدم (السعر، الفئة، البحث)',
+            'إدارة سلة الشراء باستخدام Redux',
+            'لوحة تحكم لإدارة المنتجات والمستخدمين',
+            'متابعة الأرباح والإحصائيات',
+            'هيكلية قابلة للتوسع'
         ],
-        year: 2025
+        featuresTr: [
+            'Gelişmiş filtreleme sistemi (Fiyat, Kategori, Arama)',
+            'Redux ile sepet yönetimi',
+            'Ürün ve kullanıcı yönetimi paneli',
+            'Kazanç ve istatistik takibi',
+            'Genişletilebilir mimari'
+        ],
+        featuresEn: [
+            'Advanced filtering system (Price, Category, Search)',
+            'Cart management using Redux',
+            'Admin dashboard for products and users',
+            'Earnings and statistics tracking',
+            'Scalable architecture'
+        ]
     },
 
     {
         id: 3,
-        title: 'قبو الكتب',
+        titleAr: 'قبو الكتب',
+        titleTr: 'Kitap Mahzeni',
         titleEn: 'Book Vault',
-        description: 'منصة ويب بسيطة لتجميع مصادر الكتب الرقمية في مكان واحد، تهدف إلى تقليل وقت البحث عن الكتب وتسهيل الوصول إليها. المشروع يعالج مشكلة تشتت مصادر القراءة والاستماع عبر الإنترنت من خلال توفير واجهة موحدة تعرض الكتب مع روابط مباشرة لمصادر خارجية مثل يوتيوب أو مكتبات رقمية. تم بناء المشروع كبداية عملية باستخدام HTML وCSS وJavaScript بدون Backend، مع تنظيم هيكل الصفحات بشكل معياري. يعتمد على ربط المحتوى بروابط خارجية بدلاً من استضافة الكتب، مما يقلل التعقيد التقني ويجعل الأداء خفيفًا. بالرغم من بساطة البنية، تم تصميمه بطريقة قابلة للتوسع مستقبلاً ليشمل نظام إدارة محتوى، تصنيفات ديناميكية، ومحرك بحث متقدم.',
+        descriptionAr: 'منصة ويب لتجميع مصادر الكتب الرقمية وتسهيل الوصول إليها، توفر واجهة موحدة تعرض الكتب مع روابط مباشرة لمصادر خارجية.',
+        descriptionTr: 'Dijital kitap kaynaklarını bir araya getiren ve erişimi kolaylaştıran bir web platformu. Harici kaynaklara doğrudan bağlantılar içeren bir arayüz sunar.',
+        descriptionEn: 'A web platform to aggregate digital book resources and facilitate access, providing a unified interface with direct links to external sources.',
         image: '/images/bookvalout.png',
-        tags: ['HTML', 'CSS', 'JavaScript', 'Frontend', 'Static Website'],
+        tags: ['HTML', 'CSS', 'JavaScript', 'Frontend'],
         category: 'education',
-        link: '',
-        features: [
-            'عرض قائمة كتب منظمة مع صور وأوصاف مختصرة',
-            'روابط مباشرة للقراءة أو الاستماع عبر منصات خارجية',
-            'واجهة مستخدم مرتبة وسهلة التصفح',
+        year: 2024,
+        featuresAr: [
+            'عرض قائمة كتب منظمة',
+            'روابط مباشرة للقراءة أو الاستماع',
             'تقسيم الكتب حسب فئات أساسية',
-            'بنية Frontend نظيفة بدون تعقيد تقني',
-            'إمكانية تطويره مستقبلاً ليصبح منصة ديناميكية'
+            'بنية خفيفة وسريعة'
         ],
-        year: 2024
+        featuresTr: [
+            'Düzenli kitap listesi görünümü',
+            'Okuma veya dinleme için doğrudan bağlantılar',
+            'Temel kategorilere göre kitap ayrımı',
+            'Hafif ve hızlı yapı'
+        ],
+        featuresEn: [
+            'Organized book list display',
+            'Direct links for reading or listening',
+            'Book categorization by type',
+            'Lightweight and fast structure'
+        ]
     },
     {
         id: 4,
-        title: 'Bookfoliyi – بورتفوليو تفاعلي بأسلوب الصفحات المتقلبة',
+        titleAr: 'Bookfoliyi – بورتفوليو تفاعلي',
+        titleTr: 'Bookfoliyi – İnteraktif Kitap Stili Portföy',
         titleEn: 'Bookfoliyi – Interactive Book-Style Portfolio',
-        description: 'مشروع Bookfoliyi هو بورتفوليو شخصي تفاعلي يعيد تعريف تجربة عرض الأعمال من خلال تحويلها إلى تجربة تصفح تشبه تقليب صفحات كتاب حقيقي. يعالج مشكلة البورتفوليو التقليدي الثابت الذي يفتقر للتميّز والانخراط البصري، مما يقلل من مدة بقاء الزائر وتأثير الانطباع الأول. الهدف كان تصميم واجهة Frontend فقط تعتمد على HTML وCSS وJavaScript بدون أي Backend، مع هندسة مكونات واضحة، وفصل منظم للملفات، وتنفيذ تأثيرات Page Flip باستخدام CSS Transforms وJavaScript event handling. تم تصميم الهيكل ليكون Modular بحيث يمكن إعادة استخدام مكونات مثل SkillSection وProjectPage بسهولة. تم تحسين الأداء عبر تقليل DOM reflows واستخدام requestAnimationFrame في الحركات، وضبط الصور بأحجام مضغوطة. لا يتطلب المشروع مصادقة أو تخزين بيانات، ويستهدف أصحاب الأعمال والمطورين الباحثين عن عرض إبداعي لأعمالهم. قابل للتوسع بإضافة CMS مستقبلاً أو ربطه ببيانات ديناميكية. النتيجة: تجربة مستخدم مميزة تزيد معدل التفاعل ومدة الجلسة مقارنة بالبورتفوليو التقليدي.',
+        descriptionAr: 'بورتفوليو شخصي تفاعلي يحاكي تجربة تقليب صفحات كتاب حقيقي، يعتمد على تأثيرات CSS 3D Transforms لتقديم الأعمال بشكل إبداعي.',
+        descriptionTr: 'Gerçek bir kitabın sayfalarını çevirme deneyimini simüle eden etkileşimli kişisel portföy. Çalışmaları yaratıcı bir şekilde sunmak için CSS 3D Dönüşümlerini kullanır.',
+        descriptionEn: 'An interactive personal portfolio that simulates the experience of flipping actual book pages, using CSS 3D Transforms to present works creatively.',
         image: '/images/bookfilyo.png',
-        tags: ['HTML', 'CSS', 'JavaScript', 'Frontend', 'UI Animation', 'Portfolio'],
+        tags: ['HTML', 'CSS', 'JavaScript', 'UI Animation'],
         category: 'portfolio',
-        link: '',
-        features: [
-            'تصميم بورتفوليو بأسلوب تقليب صفحات كتاب واقعي',
-            'تنفيذ تأثير Page Flip باستخدام CSS 3D Transforms',
-            'هيكلة مكونات Frontend بطريقة Modular قابلة لإعادة الاستخدام',
-            'عرض المهارات والمشاريع والخبرات بشكل تفاعلي',
-            'تحسين الأداء عبر تقليل إعادة رسم DOM',
-            'تصميم متوافق مع الشاشات المختلفة بدون مكتبات خارجية'
+        year: 2024,
+        featuresAr: [
+            'تأثير تقليب الصفحات Page Flip',
+            'تصميم بأسلوب كتاب واقعي',
+            'عرض المهارات والمشاريع بشكل تفاعلي',
+            'أداء عالي وسلس'
         ],
-        year: 2024
+        featuresTr: [
+            'Sayfa çevirme (Page Flip) efekti',
+            'Gerçekçi kitap stili tasarım',
+            'Yeteneklerin ve projelerin etkileşimli sunumu',
+            'Yüksek ve akıcı performans'
+        ],
+        featuresEn: [
+            'Realistic Page Flip effect',
+            'Book-style interactive design',
+            'Interactive skills and projects display',
+            'Smooth and high performance'
+        ]
     },
     {
         id: 5,
-        title: 'O’clock – متجر ساعات إلكتروني ثابت',
-        titleEn: 'O’clock – Static Watch E-Commerce Store',
-        description: 'مشروع متجر إلكتروني تم تطويره كتمرين عملي على بناء واجهات المتاجر باستخدام HTML و CSS فقط، قبل تعلم مفاهيم الصفحات الديناميكية. المشكلة الأساسية كانت الحاجة إلى عرض كتالوج كبير من الساعات بطريقة منظمة وجذابة لبيعها عبر إنستقرام وفيسبوك بدون نظام إدارة محتوى. تم بناء أكثر من 200 صفحة HTML ثابتة يدويًا تغطي 12 فئة رئيسية، وكل فئة تحتوي على 10 منتجات، ولكل منتج صفحة مستقلة بتفاصيله الكاملة. اعتمدت البنية على تقسيم واضح للملفات وهيكلة روابط داخلية مترابطة لضمان تجربة تنقل سلسة. رغم عدم وجود Backend، تم تحقيق تنظيم هيكلي قوي، وتحسين في إعادة استخدام أنماط CSS، وتقليل التكرار عبر مكونات تصميمية متشابهة. المشروع أبرز فهم عميق لهيكلة الواجهات، إدارة مشروع ضخم يدويًا، وبناء تجربة عرض منتجات قابلة للتوسع مستقبلاً نحو نظام ديناميكي.',
+        titleAr: 'متجر ساعات إلكتروني',
+        titleTr: 'Saat E-Ticaret Mağazası',
+        titleEn: 'Watch E-Commerce Store',
+        descriptionAr: 'نموذج لمتجر إلكتروني ضخم يحتوي على مئات الصفحات الثابتة المنظمة، يغطي فئات متنوعة من الساعات مع تفاصيل كاملة لكل منتج.',
+        descriptionTr: 'Yüzlerce düzenli statik sayfa içeren devasa bir e-ticaret mağazası modeli. Çeşitli saat kategorilerini ve her ürün için tam ayrıntıları kapsar.',
+        descriptionEn: 'A massive e-commerce store model containing hundreds of organized static pages, covering various watch categories with full details for each product.',
         image: '/images/oclock.png',
-        tags: ['HTML', 'CSS', 'Static Website', 'E-Commerce UI', 'Product Catalog'],
+        tags: ['HTML', 'CSS', 'E-Commerce UI'],
         category: 'ecommerce',
-        link: '',
-        features: [
-            'بناء أكثر من 200 صفحة HTML يدوياً',
-            '12 فئة رئيسية من الساعات',
-            'كل فئة تحتوي على 10 منتجات',
-            'صفحة مستقلة لكل منتج تحتوي على تفاصيل وصورة وسعر',
-            'هيكلة روابط داخلية منظمة بين الفئات والمنتجات',
-            'تصميم واجهات متناسقة باستخدام CSS فقط',
-            'إعادة استخدام أنماط تصميم لتقليل التكرار',
-            'تهيئة المتجر للبيع عبر إنستقرام وفيسبوك'
+        year: 2024,
+        featuresAr: [
+            'هيكلة مئات الصفحات يدوياً',
+            'تصنيف دقيق للمنتجات',
+            'واجهات متناسقة وجذابة',
+            'سهولة التنقل بين الفئات'
         ],
-        year: 2024
+        featuresTr: [
+            'Yüzlerce sayfanın manuel yapılandırılması',
+            'Hassas ürün kategorizasyonu',
+            'Tutarlı ve çekici arayüzler',
+            'Kategoriler arası kolay gezinme'
+        ],
+        featuresEn: [
+            'Manual construction of hundreds of pages',
+            'Precise product categorization',
+            'Consistent and attractive interfaces',
+            'Easy navigation between categories'
+        ]
     },
     {
         id: 6,
-        title: 'منصة خير القرون',
+        titleAr: 'منصة خير القرون',
+        titleTr: 'Khair Al-Qurun Platformu',
         titleEn: 'Khair Al-Qurun Platform',
-        description: 'منصة ويب مركزية تجمع جميع محتويات سلسلة "خير القرون" للشيخ أحمد السيد في مكان واحد بعد أن كانت موزعة بين يوتيوب وملفات خارجية متعددة. المشكلة الأساسية كانت تشتت المصادر (تلخيصات، تفريغات، كراسات، تسجيلات صوتية، تشجيرات علمية) مما يضعف تجربة المستخدم ويصعّب الوصول المنظم للمحتوى. الهدف كان بناء نظام عرض ديناميكي يعتمد على JavaScript لإنشاء صفحات الحلقات بشكل مرن دون تكرار يدوي، مع هيكل مكونات منظم وفصل واضح بين طبقة العرض والبيانات. تم تصميم الواجهة باستخدام HTML وTailwind CSS مع إدارة منطق التفاعل عبر JavaScript، بما يشمل توليد الصفحات ديناميكياً، التحكم بالمحتوى، والتنقل السلس. روعي في التنفيذ تقليل حجم الأصول، تحسين تحميل الصفحة، وتنظيم البيانات بطريقة قابلة للتوسع مستقبلاً لإضافة حلقات جديدة دون تعديل هيكلي. النتيجة: تجربة تصفح موحدة، تقليل زمن الوصول للمعلومة، وإتاحة مصدر مركزي شامل يخدم طلاب العلم بكفاءة.',
+        descriptionAr: 'منصة تعليمية تجمع محتويات علمية متنوعة في مكان واحد، تعتمد على توليد الصفحات ديناميكياً لتسهيل الوصول للمحاضرات والملفات.',
+        descriptionTr: 'Çeşitli bilimsel içerikleri tek bir yerde toplayan eğitim platformu. Derslere ve dosyalara erişimi kolaylaştırmak için dinamik sayfa oluşturmayı kullanır.',
+        descriptionEn: 'An educational platform that gathers diverse scientific content in one place, using dynamic page generation to facilitate access to lectures and files.',
         image: '/images/khairalquron.png',
-        tags: ['HTML', 'CSS', 'JavaScript', 'TailwindCSS', 'Dynamic Pages', 'Content Platform'],
+        tags: ['JavaScript', 'TailwindCSS', 'Dynamic Pages'],
         category: 'education',
-        link: '',
-        features: [
-            'تجميع جميع محتويات السلسلة في مصدر واحد منظم',
-            'إنشاء صفحات الحلقات ديناميكياً عبر JavaScript',
-            'تنظيم المحتوى حسب الحلقة (ملخص – تفريغ – كراسة – تسجيل – تشجير)',
-            'واجهة مستخدم مبنية بـ Tailwind مع تصميم متناسق',
-            'تنقل سلس بين الحلقات دون إعادة تحميل كامل الصفحة',
-            'قابلية إضافة حلقات جديدة دون تعديل بنيوي في الكود',
-            'هيكل ملفات منظم يفصل بين البيانات ومنطق العرض'
+        year: 2025,
+        featuresAr: [
+            'توليد الصفحات ديناميكياً',
+            'تنظيم المحتوى العلمي (ملخصات، تفريغات)',
+            'بحث وتصفح سريع',
+            'واجهة مستخدم عصرية'
         ],
-        year: 2025
+        featuresTr: [
+            'Dinamik sayfa oluşturma',
+            'Bilimsel içerik organizasyonu (Özetler, transkriptler)',
+            'Hızlı arama ve gezinme',
+            'Modern kullanıcı arayüzü'
+        ],
+        featuresEn: [
+            'Dynamic page generation',
+            'Scientific content organization (Summaries, transcripts)',
+            'Fast search and navigation',
+            'Modern user interface'
+        ]
     },
     {
         id: 7,
-        title: 'فوت كرافت – متجر مستلزمات كرة القدم والرياضة',
-        titleEn: 'FootCraft – Football & Sports E-Commerce Store',
-        description: 'فوت كرافت هو متجر إلكتروني متخصص في بيع مستلزمات كرة القدم والرياضة، تم تطويره كتطبيق ويب أحادي الصفحة (SPA) باستخدام React مع تصميم مخصص عبر CSS وTailwind. جاء المشروع لمعالجة ضعف تجربة المستخدم في المتاجر التقليدية التي تفتقر إلى تصنيف واضح وسرعة تصفح فعالة. الهدف كان بناء واجهة احترافية تعتمد على صفحات ديناميكية، نظام فلترة مباشر على مستوى الواجهة، وتنظيم مكونات قابل لإعادة الاستخدام. تم اعتماد هيكلية مكونات واضحة، إدارة حالة بسيطة للمنتجات والفلاتر، وتوليد صفحات المنتجات بشكل ديناميكي عبر Routing. تم تحسين الأداء عبر تقليل إعادة التصيير غير الضرورية، وتقسيم المكونات، وتحميل الأصول بشكل منظم. لا يتضمن المشروع بيانات حساسة أو نظام دفع مدمج، مما يقلل المخاطر الأمنية، مع مراعاة أفضل ممارسات حماية الروابط والتنقل الداخلي. التصميم قابل للتوسع لإضافة سلة مشتريات وربط API مستقبلاً. النتيجة كانت متجر سريع التصفح، واضح الهيكل، وقابل للتطوير إلى منصة تجارة إلكترونية متكاملة.',
+        titleAr: 'فوت كرافت – مستلزمات رياضية',
+        titleTr: 'FootCraft – Spor Malzemeleri',
+        titleEn: 'FootCraft – Sports Equipment',
+        descriptionAr: 'تطبيق ويب أحادي الصفحة (SPA) متخصص في بيع مستلزمات كرة القدم، يوفر نظام فلترة متقدم وتجربة تسوق سريعة.',
+        descriptionTr: 'Futbol malzemeleri satışında uzmanlaşmış tek sayfalık bir web uygulaması (SPA). Gelişmiş bir filtreleme sistemi ve hızlı bir alışveriş deneyimi sunar.',
+        descriptionEn: 'A single-page web application (SPA) specialized in selling football equipment, providing an advanced filtering system and a fast shopping experience.',
         image: '/images/foot-craft.png',
-        tags: ['React', 'TailwindCSS', 'CSS', 'SPA', 'Dynamic Routing', 'Filtering System', 'Frontend Architecture'],
+        tags: ['React', 'TailwindCSS', 'SPA', 'Routing'],
         category: 'ecommerce',
-        link: '',
-        features: [
-            'بناء كتطبيق SPA باستخدام React',
-            'نظام فلترة منتجات ديناميكي على مستوى الواجهة',
-            'صفحات منتجات يتم توليدها ديناميكياً عبر React Router',
-            'هيكلية مكونات قابلة لإعادة الاستخدام',
-            'تصميم مخصص باستخدام CSS وTailwind',
-            'صفحة تواصل تحتوي على معلومات اتصال متكاملة',
-            'دمج خريطة للموقع داخل صفحة التواصل',
-            'تنظيم منتجات عبر تصنيفات واضحة',
-            'تنقل سريع بدون إعادة تحميل الصفحة',
-            'جاهزية للتوسعة وربط Backend مستقبلاً'
+        year: 2025,
+        featuresAr: [
+            'تطبيق SPA سريع الأداء',
+            'نظام فلترة منتجات متقدم',
+            'صفحات منتجات ديناميكية',
+            'تكامل مع خرائط جوجل'
         ],
-        year: 2025
+        featuresTr: [
+            'Hızlı performanslı SPA uygulaması',
+            'Gelişmiş ürün filtreleme sistemi',
+            'Dinamik ürün sayfaları',
+            'Google Haritalar entegrasyonu'
+        ],
+        featuresEn: [
+            'Fast-performing SPA application',
+            'Advanced product filtering system',
+            'Dynamic product pages',
+            'Google Maps integration'
+        ]
     },
     {
         id: 8,
-        title: 'ويذر – نظام تصنيف مناخ الدول',
-        titleEn: 'Weather Climate Classification System',
-        description: 'نظام ويب أحادي الصفحة يهدف إلى عرض وتصنيف دول العالم حسب أنماطها المناخية لدعم الأبحاث والدراسات الجغرافية. يعالج مشكلة تشتت بيانات المناخ وصعوبة الوصول إلى تصنيف واضح ومنظم، من خلال واجهة مبسطة تعتمد على جلب بيانات الدول وأعلامها عبر API خارجي وعرضها ضمن تصنيفات مناخية محددة. تم بناء النظام باستخدام HTML وJavaScript وTailwind CSS مع اعتماد هيكلية منطقية تفصل بين طبقة جلب البيانات وطبقة العرض. تم تحسين الأداء عبر تقليل عدد طلبات الشبكة واعتماد معالجة بيانات خفيفة داخل المتصفح، مع تصميم مرن يسمح بتوسعة التصنيفات مستقبلاً دون إعادة هيكلة كاملة.',
+        titleAr: 'ويذر – تصنيف مناخ الدول',
+        titleTr: 'Weather – İklim Sınıflandırma Sistemi',
+        titleEn: 'Weather – Climate Classification System',
+        descriptionAr: 'نظام ويب لعرض وتصنيف دول العالم حسب أنماطها المناخية، يعتمد على API خارجي لجلب البيانات والأعلام بشكل فوري.',
+        descriptionTr: 'Dünya ülkelerini iklim özelliklerine göre listeleyen ve sınıflandıran bir web sistemi. Verileri ve bayrakları anlık olarak almak için harici bir API kullanır.',
+        descriptionEn: 'A web system for displaying and classifying world countries by climate patterns, using an external API to fetch data and flags in real-time.',
         image: '/images/wither.png',
-        tags: ['HTML', 'JavaScript', 'TailwindCSS', 'API Integration', 'SPA'],
+        tags: ['HTML', 'JavaScript', 'TailwindCSS', 'API'],
         category: 'education',
-        link: '',
-        features: [
-            'تصنيف الدول حسب الأنماط المناخية (مداري، صحراوي، معتدل، قطبي...)',
-            'جلب أعلام الدول ديناميكياً عبر API خارجي',
-            'واجهة أحادية الصفحة بدون إعادة تحميل',
-            'عرض منظم وبصري واضح يدعم الاستخدام الأكاديمي',
-            'كود منظم يفصل بين منطق البيانات وطبقة العرض',
-            'تصميم قابل للتوسعة لإضافة مناخات أو دول جديدة'
+        year: 2025,
+        featuresAr: [
+            'جلب بيانات الدول عبر API',
+            'تصنيف مناخي دقيق',
+            'واجهة أحادية الصفحة',
+            'بحث سريع عن الدول'
         ],
-        year: 2025
+        featuresTr: [
+            'API üzerinden ülke verilerini çekme',
+            'Hassas iklim sınıflandırması',
+            'Tek sayfalık arayüz',
+            'Hızlı ülke arama'
+        ],
+        featuresEn: [
+            'Fetching country data via API',
+            'Accurate climate classification',
+            'Single-page interface',
+            'Fast country search'
+        ]
     },
     {
         id: 9,
-        title: 'تغذية – نظام تصنيف مصادر السعرات',
-        titleEn: 'Nutrition Calorie Source Filter',
-        description: 'تطبيق ويب مبني باستخدام React يتيح للمستخدمين تصنيف الأطعمة حسب مصدر السعرات الحرارية (كربوهيدرات، بروتينات، دهون). يعالج مشكلة عدم وضوح نوع السعرات في النظام الغذائي اليومي من خلال واجهة تعتمد على فلترة ديناميكية للبيانات بدون إعادة تحميل الصفحة. يعتمد على بنية Component-Based Architecture، مع إدارة حالة مركزية للفلترة باستخدام React Hooks، وهيكل بيانات منظم يسهل التوسع مستقبلاً. تم تحسين الأداء عبر تقليل إعادة التصيير (Re-rendering) واستخدام مفاتيح فريدة للعناصر، مع تصميم قابل للتوسعة لدعم قاعدة بيانات مستقبلية أو API خارجية. النظام لا يتطلب مصادقة حالياً ولا يتعامل مع بيانات حساسة، ومناسب للنشر على بيئة استضافة ثابتة مثل Vercel أو Netlify.',
+        titleAr: 'تغذية – مصادر السعرات',
+        titleTr: 'Beslenme – Kalori Kaynağı Filtresi',
+        titleEn: 'Nutrition – Calorie Source Filter',
+        descriptionAr: 'تطبيق ويب يتيح للمستخدمين تصنيف الأطعمة حسب مصدر السعرات الحرارية (كربوهيدرات، بروتينات، دهون) مع تحديث فوري.',
+        descriptionTr: 'Kullanıcıların yiyecekleri kalori kaynaklarına (karbonhidrat, protein, yağ) göre sınıflandırmasına olanak tanıyan, anlık güncellemeli bir web uygulaması.',
+        descriptionEn: 'A web application that allows users to classify foods by calorie source (carbs, protein, fats) with real-time updates.',
         image: '/images/tagzia.png',
-        tags: ['React', 'Bootstrap', 'Frontend', 'Filtering System', 'UI Components'],
+        tags: ['React', 'Bootstrap', 'Filtering'],
         category: 'health',
-        link: '',
-        features: [
-            'فلترة الأطعمة حسب مصدر السعرات (كربوهيدرات / بروتين / دهون)',
-            'تحديث ديناميكي للقائمة بدون إعادة تحميل الصفحة',
-            'بنية مكونات قابلة لإعادة الاستخدام (Reusable Components)',
-            'تصميم واجهة منظم باستخدام Bootstrap Grid System',
-            'هيكل بيانات قابل للتوسعة لإضافة مصادر أو عناصر جديدة بسهولة'
+        year: 2025,
+        featuresAr: [
+            'فلترة أطعمة ديناميكية',
+            'بنية مكونات Reusable',
+            'تحديث فوري للقائمة',
+            'تصميم بسيط وسهل الاستخدام'
         ],
-        year: 2025
+        featuresTr: [
+            'Dinamik yiyecek filtreleme',
+            'Tekrar kullanılabilir bileşen yapısı',
+            'Anlık liste güncellemesi',
+            'Basit ve kullanıcı dostu tasarım'
+        ],
+        featuresEn: [
+            'Dynamic food filtering',
+            'Reusable component architecture',
+            'Instant list updates',
+            'Simple and easy-to-use design'
+        ]
     },
     {
         id: 10,
-        title: 'متجر تجميعه',
-        titleEn: 'TAGMİA E-Commerce Platform',
-        description: 'منصة تجارة إلكترونية متخصصة في بيع تجميعات الحاسوب الجاهزة وقطع الكمبيوتر الفردية مع نظام بناء تجميعة مخصص. يعالج المشروع مشكلة صعوبة اختيار القطع المتوافقة تقنياً عبر نظام فلترة ديناميكي، بحث متقدم، وصفحات منتجات مستقلة لكل قطعة. تم تطوير الواجهة باستخدام React وبنية RESTful API منظمة تدعم إدارة المنتجات، التصنيفات، والفلاتر بكفاءة. تم تصميم المعمارية بطريقة Modular Architecture تفصل بين طبقة العرض، منطق الأعمال، وطبقة البيانات لضمان قابلية التوسع. تم تحسين الأداء عبر Lazy Loading، وتقسيم الكود (Code Splitting)، وإدارة الحالة بكفاءة لتقليل إعادة التصيير. تم تأمين المنصة عبر مصادقة قائمة على التوكن، حماية المسارات، والتحقق من صحة البيانات على مستوى الخادم. النظام قابل للتوسع لدعم عدد كبير من المنتجات والمستخدمين مع إمكانية التكامل مع أنظمة دفع مستقبلية.',
+        titleAr: 'متجر تجميعه – قطع كمبيوتر',
+        titleTr: 'TAGMİA – Bilgisayar Mağazası',
+        titleEn: 'TAGMİA – Computer E-commerce',
+        descriptionAr: 'منصة تجارة إلكترونية متخصصة في قطع الحاسوب وتجميعات الألعاب، توفر نظام بحث وفلترة متطور لتسهيل الاختيار.',
+        descriptionTr: 'Bilgisayar parçaları ve oyuncu sistemlerinde uzmanlaşmış bir e-ticaret platformu. Seçimi kolaylaştırmak için gelişmiş arama ve filtreleme sistemi sunar.',
+        descriptionEn: 'An e-commerce platform specialized in computer parts and gaming builds, providing an advanced search and filtering system to simplify choices.',
         image: '/images/tagmia.png',
-        tags: ['React', 'REST API', 'Bootstrap', 'E-commerce', 'Filtering System', 'Search Engine'],
+        tags: ['React', 'REST API', 'Bootstrap', 'E-commerce'],
         category: 'ecommerce',
-        link: '',
-        features: [
-            'نظام فلترة ديناميكي حسب الفئة والسعر والمواصفات التقنية',
-            'محرك بحث فوري يدعم البحث الجزئي',
-            'صفحة مستقلة لكل منتج مع تفاصيل تقنية كاملة',
-            'نظام عرض تجميعات جاهزة مع إمكانية التخصيص',
-            'تكامل RESTful API لإدارة المنتجات والبيانات',
-            'هيكلية موديولار تفصل بين الواجهة وطبقة البيانات',
-            'إدارة حالة محسنة لتقليل إعادة التصيير في React'
+        year: 2025,
+        featuresAr: [
+            'نظام تصفية متطور للمواصفات',
+            'محرك بحث فوري',
+            'صفحات منتجات تقنية مفصلة',
+            'عرض تجميعات حاسوب جاهزة'
         ],
-        year: 2025
-    },
-    {
-        id: 11,
-        title: 'متجر تجميعه',
-        titleEn: 'TAGMİA E-Commerce Platform',
-        description: 'منصة تجارة إلكترونية متخصصة في بيع تجميعات الحاسوب الجاهزة وقطع الكمبيوتر الفردية مع نظام بناء تجميعة مخصص. يعالج المشروع مشكلة صعوبة اختيار القطع المتوافقة تقنياً عبر نظام فلترة ديناميكي، بحث متقدم، وصفحات منتجات مستقلة لكل قطعة. تم تطوير الواجهة باستخدام React وبنية RESTful API منظمة تدعم إدارة المنتجات، التصنيفات، والفلاتر بكفاءة. تم تصميم المعمارية بطريقة Modular Architecture تفصل بين طبقة العرض، منطق الأعمال، وطبقة البيانات لضمان قابلية التوسع. تم تحسين الأداء عبر Lazy Loading، وتقسيم الكود (Code Splitting)، وإدارة الحالة بكفاءة لتقليل إعادة التصيير. تم تأمين المنصة عبر مصادقة قائمة على التوكن، حماية المسارات، والتحقق من صحة البيانات على مستوى الخادم. النظام قابل للتوسع لدعم عدد كبير من المنتجات والمستخدمين مع إمكانية التكامل مع أنظمة دفع مستقبلية.',
-        image: '/images/tagmia.png',
-        tags: ['React', 'REST API', 'Bootstrap', 'E-commerce', 'Filtering System', 'Search Engine'],
-        category: 'ecommerce',
-        link: '',
-        features: [
-            'نظام فلترة ديناميكي حسب الفئة والسعر والمواصفات التقنية',
-            'محرك بحث فوري يدعم البحث الجزئي',
-            'صفحة مستقلة لكل منتج مع تفاصيل تقنية كاملة',
-            'نظام عرض تجميعات جاهزة مع إمكانية التخصيص',
-            'تكامل RESTful API لإدارة المنتجات والبيانات',
-            'هيكلية موديولار تفصل بين الواجهة وطبقة البيانات',
-            'إدارة حالة محسنة لتقليل إعادة التصيير في React'
+        featuresTr: [
+            'Gelişmiş teknik özellik filtreleme',
+            'Anlık arama motoru',
+            'Detaylı teknik ürün sayfaları',
+            'Hazır bilgisayar kasası sergileme'
         ],
-        year: 2025
+        featuresEn: [
+            'Advanced technical specifications filtering',
+            'Instant search engine',
+            'Detailed technical product pages',
+            'Pre-built PC builds showcase'
+        ]
     },
     {
         id: 12,
-        title: 'ياسمين الشام',
-        titleEn: 'Yasmin Al Sham E-Commerce Platform',
-        description: 'متجر إلكتروني متكامل يهدف إلى تقديم تجربة شراء منظمة وقابلة للتوسع مع إدارة دقيقة لحالة السلة والمنتجات. المشكلة كانت في بناء منصة تجارة إلكترونية تعتمد على إدارة حالة مركزية بدون تعقيد زائد مع ضمان أداء ثابت عند تعدد التصنيفات وصفحات التفاصيل. تم تطوير الحل باستخدام Next.js ببنية صفحات ديناميكية لعرض المنتجات (Dynamic Routes) وربطها بإدارة حالة مركزية عبر Redux Toolkit لضبط السلة، الكميات، وحالة الطلب بشكل متزامن. تم تقسيم النظام إلى طبقات واضحة (عرض – إدارة حالة – منطق أعمال)، مع اعتماد Server-Side Rendering و Static Generation لتحسين SEO والأداء. تم تصميم هيكلية تصنيفات متعددة مع إمكانية التصفية، وإضافة المنتج إلى السلة مع تحديث فوري للحالة دون إعادة تحميل الصفحة. المنصة قابلة للتوسع لإضافة بوابات دفع ونظام مصادقة مستقبلي.',
+        titleAr: 'ياسمين الشام – متجر متكامل',
+        titleTr: 'Yasmin Al Sham – Tam E-Ticaret',
+        titleEn: 'Yasmin Al Sham – Integrated Store',
+        descriptionAr: 'متجر إلكتروني يركز على إدارة السلة والمنتجات بكفاءة، مع تحسين الأداء لضمان تجربة شراء سلسة وسريعة.',
+        descriptionTr: 'Sorunsuz ve hızlı bir satın alma deneyimi sağlamak için sepet ve ürün yönetimine odaklanan, performans optimizasyonlu bir e-ticaret mağazası.',
+        descriptionEn: 'An e-commerce store focused on efficient cart and product management, with performance optimization to ensure a smooth and fast buying experience.',
         image: '/images/yasmine-alshaam.png',
-        tags: ['Next.js', 'React', 'Redux Toolkit', 'E-commerce', 'State Management', 'Dynamic Routing'],
+        tags: ['Next.js', 'Redux Toolkit', 'Dynamic Routing', 'SEO'],
         category: 'ecommerce',
-        link: '',
-        features: [
-            'إدارة سلة مشتريات مركزية باستخدام Redux Toolkit',
-            'صفحات تفاصيل ديناميكية لكل منتج باستخدام Dynamic Routes',
-            'نظام تصنيفات متعددة مع فلترة المنتجات',
-            'تحديث فوري لحالة السلة بدون إعادة تحميل الصفحة',
-            'تحسين SEO عبر Server-Side Rendering و Static Generation',
-            'هيكلية موديولار قابلة للتوسع'
+        year: 2025,
+        featuresAr: [
+            'إدارة سلة مركزية باستخدام Redux',
+            'تحسين SEO قوي',
+            'تحديثات فورية لحالة الطلب',
+            'هيكلية برمجية منظمة'
         ],
-        year: 2025
-    },
-
+        featuresTr: [
+            'Redux ile merkezi sepet yönetimi',
+            'Güçlü SEO optimizasyonu',
+            'Anlık sipariş durumu güncellemeleri',
+            'Düzenli yazılım mimarisi'
+        ],
+        featuresEn: [
+            'Centralized cart management using Redux',
+            'Strong SEO optimization',
+            'Instant order status updates',
+            'Organized software architecture'
+        ]
+    }
 ];
 
 // دالة للحصول على مشروع بواسطة ID
@@ -270,7 +367,7 @@ export const getProjectsByCategory = (category) => {
 
 // دالة للحصول على أحدث المشاريع
 export const getLatestProjects = (count = 3) => {
-    return projects
+    return [...projects]
         .sort((a, b) => b.year - a.year)
         .slice(0, count);
 };

@@ -44,7 +44,9 @@ import {
     faMobileScreenButton,
     faCompassDrafting,
     faChartSimple,
-    faLaptopCode
+    faLaptopCode,
+    faPlus,
+    faGlobe
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -84,6 +86,8 @@ export const iconMap = {
     faCompassDrafting,
     faChartSimple,
     faLaptopCode,
+    faPlus,
+    faGlobe,
 
     // Navigation & UI
     faShoppingCart,

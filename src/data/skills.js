@@ -1,12 +1,14 @@
-// المهارات التقنية
+// المهارات التقنية - مع دعم اللغات
 export const skills = [
     {
         id: 1,
-        name: 'React ',
+        name: 'React',
         icon: 'faReact',
         level: 95,
         category: 'frontend',
-        description: 'بناء تطبيقات ويب حديثة وسريعة'
+        descriptionAr: 'بناء تطبيقات ويب حديثة وسريعة',
+        descriptionTr: 'Modern ve hızlı web uygulamaları geliştirme',
+        descriptionEn: 'Building modern and fast web applications'
     },
     {
         id: 2,
@@ -14,23 +16,29 @@ export const skills = [
         icon: 'faJs',
         level: 90,
         category: 'frontend',
-        description: 'لغة البرمجة الأساسية للويب'
+        descriptionAr: 'لغة البرمجة الأساسية للويب',
+        descriptionTr: 'Web için temel programlama dili',
+        descriptionEn: 'The core programming language for the web'
     },
     {
         id: 3,
         name: 'Redux Toolkit',
-        icon: 'faAtom', // Using React icon as a fallback for Redux (since Toolkit is related) or faCode
+        icon: 'faAtom',
         level: 85,
         category: 'frontend',
-        description: 'إدارة حالة التطبيقات المعقدة'
+        descriptionAr: 'إدارة حالة التطبيقات المعقدة',
+        descriptionTr: 'Karmaşık uygulama durumu yönetimi',
+        descriptionEn: 'Complex application state management'
     },
     {
         id: 4,
-        name: 'CSS ',
+        name: 'CSS / Sass',
         icon: 'faCss3',
         level: 92,
         category: 'frontend',
-        description: 'تصميم واجهات مستخدم جذابة'
+        descriptionAr: 'تصميم واجهات مستخدم جذابة',
+        descriptionTr: 'Çekici kullanıcı arayüzleri tasarlama',
+        descriptionEn: 'Designing attractive user interfaces'
     },
     {
         id: 5,
@@ -38,23 +46,29 @@ export const skills = [
         icon: 'faMobileScreenButton',
         level: 98,
         category: 'design',
-        description: 'تصميم متجاوب لجميع الأجهزة'
+        descriptionAr: 'تصميم متجاوب لجميع الأجهزة',
+        descriptionTr: 'Tüm cihazlar için responsive tasarım',
+        descriptionEn: 'Responsive design for all devices'
     },
     {
         id: 6,
-        name: 'Node.js ',
+        name: 'Node.js',
         icon: 'faNode',
         level: 80,
         category: 'backend',
-        description: 'بناء خوادم وواجهات برمجية'
+        descriptionAr: 'بناء خوادم وواجهات برمجية',
+        descriptionTr: 'Sunucu ve API geliştirme',
+        descriptionEn: 'Building servers and APIs'
     },
     {
         id: 7,
         name: 'Firebase',
-        icon: 'faDatabase', // Using database icon for Firebase
+        icon: 'faDatabase',
         level: 75,
         category: 'backend',
-        description: 'قواعد بيانات وخدمات سحابية'
+        descriptionAr: 'قواعد بيانات وخدمات سحابية',
+        descriptionTr: 'Veritabanı ve bulut hizmetleri',
+        descriptionEn: 'Database and cloud services'
     },
     {
         id: 8,
@@ -62,7 +76,9 @@ export const skills = [
         icon: 'faGithub',
         level: 88,
         category: 'tools',
-        description: 'إدارة الإصدارات والتعاون'
+        descriptionAr: 'إدارة الإصدارات والتعاون',
+        descriptionTr: 'Sürüm kontrolü ve işbirliği',
+        descriptionEn: 'Version control and collaboration'
     },
     {
         id: 9,
@@ -70,7 +86,9 @@ export const skills = [
         icon: 'faCompassDrafting',
         level: 85,
         category: 'design',
-        description: 'تصميم تجربة مستخدم مميزة'
+        descriptionAr: 'تصميم تجربة مستخدم مميزة',
+        descriptionTr: 'Benzersiz kullanıcı deneyimi tasarımı',
+        descriptionEn: 'Designing unique user experiences'
     },
     {
         id: 10,
@@ -78,7 +96,9 @@ export const skills = [
         icon: 'faSearch',
         level: 82,
         category: 'marketing',
-        description: 'تحسين محركات البحث'
+        descriptionAr: 'تحسين محركات البحث',
+        descriptionTr: 'Arama motoru optimizasyonu',
+        descriptionEn: 'Search engine optimization'
     },
     {
         id: 11,
@@ -86,7 +106,9 @@ export const skills = [
         icon: 'faChartSimple',
         level: 87,
         category: 'optimization',
-        description: 'تحسين سرعة وأداء المواقع'
+        descriptionAr: 'تحسين سرعة وأداء المواقع',
+        descriptionTr: 'Site hızı ve performans optimizasyonu',
+        descriptionEn: 'Website speed and performance optimization'
     },
     {
         id: 12,
@@ -94,23 +116,29 @@ export const skills = [
         icon: 'faLaptopCode',
         level: 83,
         category: 'backend',
-        description: 'التكامل مع خدمات خارجية'
+        descriptionAr: 'التكامل مع خدمات خارجية',
+        descriptionTr: 'Harici hizmetlerle entegrasyon',
+        descriptionEn: 'Integration with external services'
     },
     {
         id: 13,
         name: 'TypeScript',
-        icon: 'faCode', // Using code icon for TS
+        icon: 'faCode',
         level: 95,
         category: 'frontend',
-        description: 'تطوير آمن وقوي'
+        descriptionAr: 'تطوير آمن وقوي',
+        descriptionTr: 'Güvenli ve güçlü geliştirme',
+        descriptionEn: 'Safe and robust development'
     },
     {
         id: 14,
         name: 'Tailwind CSS',
-        icon: 'faCss3', // Using CSS3 icon for Tailwind
+        icon: 'faCss3',
         level: 95,
         category: 'frontend',
-        description: 'تنسيق سريع ومرن'
+        descriptionAr: 'تنسيق سريع ومرن',
+        descriptionTr: 'Hızlı ve esnek stil',
+        descriptionEn: 'Fast and flexible styling'
     },
     {
         id: 15,
@@ -118,7 +146,9 @@ export const skills = [
         icon: 'faBootstrap',
         level: 95,
         category: 'frontend',
-        description: 'واجهات متجاوبة جاهزة'
+        descriptionAr: 'واجهات متجاوبة جاهزة',
+        descriptionTr: 'Hazır responsive arayüzler',
+        descriptionEn: 'Ready-made responsive interfaces'
     },
     {
         id: 16,
@@ -126,28 +156,64 @@ export const skills = [
         icon: 'faNextjs',
         level: 95,
         category: 'frontend',
-        description: 'بناء تطبيقات ويب حديثة وسريعة'
+        descriptionAr: 'بناء تطبيقات ويب حديثة وسريعة',
+        descriptionTr: 'Modern ve hızlı web uygulamaları geliştirme',
+        descriptionEn: 'Building modern and fast web applications'
     }
 ];
 
-// دالة للحصول على المهارات حسب الفئة
+// فئات المهارات المترجمة
+export const skillCategories = [
+    {
+        id: 'frontend',
+        nameAr: 'تطوير الواجهات',
+        nameTr: 'Frontend Geliştirme',
+        nameEn: 'Frontend Development',
+        icon: 'faDesktop'
+    },
+    {
+        id: 'backend',
+        nameAr: 'تطوير الخوادم',
+        nameTr: 'Backend Geliştirme',
+        nameEn: 'Backend Development',
+        icon: 'faServer'
+    },
+    {
+        id: 'design',
+        nameAr: 'التصميم',
+        nameTr: 'Tasarım',
+        nameEn: 'Design',
+        icon: 'faPalette'
+    },
+    {
+        id: 'tools',
+        nameAr: 'الأدوات',
+        nameTr: 'Araçlar',
+        nameEn: 'Tools',
+        icon: 'faTools'
+    },
+    {
+        id: 'marketing',
+        nameAr: 'التسويق',
+        nameTr: 'Pazarlama',
+        nameEn: 'Marketing',
+        icon: 'faChartLine'
+    },
+    {
+        id: 'optimization',
+        nameAr: 'التحسين',
+        nameTr: 'Optimizasyon',
+        nameEn: 'Optimization',
+        icon: 'faBolt'
+    }
+];
+
 export const getSkillsByCategory = (category) => {
     return skills.filter(skill => skill.category === category);
 };
 
-// دالة للحصول على أفضل المهارات
 export const getTopSkills = (count = 6) => {
-    return skills
+    return [...skills]
         .sort((a, b) => b.level - a.level)
         .slice(0, count);
 };
-
-// فئات المهارات
-export const skillCategories = [
-    { id: 'frontend', name: 'تطوير الواجهات', icon: 'faDesktop' },
-    { id: 'backend', name: 'تطوير الخوادم', icon: 'faServer' },
-    { id: 'design', name: 'التصميم', icon: 'faPalette' },
-    { id: 'tools', name: 'الأدوات', icon: 'faTools' },
-    { id: 'marketing', name: 'التسويق', icon: 'faChartLine' },
-    { id: 'optimization', name: 'التحسين', icon: 'faBolt' }
-];

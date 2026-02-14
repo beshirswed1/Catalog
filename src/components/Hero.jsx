@@ -3,9 +3,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { sendGeneralInquiry } from '@/utils/whatsapp';
 import { getIcon } from '@/utils/icons';
+import { useTranslation } from '@/hooks/useTranslation';
 import styles from './Hero.module.css';
 
 export default function Hero() {
+    const { t } = useTranslation();
+
     const scrollToServices = () => {
         const element = document.getElementById('services');
         if (element) {
@@ -32,43 +35,43 @@ export default function Hero() {
                 <div className={styles.content}>
                     <div className={styles.badge}>
                         <FontAwesomeIcon icon={getIcon('faMagic')} className={styles.badgeIcon} />
-                        <span>مرحباً بك في عالم التطوير الاحترافي</span>
+                        <span>{t.hero.badge}</span>
                     </div>
 
                     <h1 className={styles.title}>
-                        أبني لك موقعاً
+                        {t.hero.titleLine1}
                         <br />
-                        <span className="text-gradient">يُحقق أهدافك</span>
+                        <span className="text-gradient">{t.hero.titleLine2}</span>
                     </h1>
 
                     <p className={styles.subtitle}>
-                        أقدم حلول ويب احترافية تناسب احتياجاتك - من كتالوج بسيط إلى منصة متكاملة
+                        {t.hero.subtitle1}
                         <br />
-                        مع تصميم عصري وأداء عالي وتجربة مستخدم استثنائية
+                        {t.hero.subtitle2}
                     </p>
 
                     <div className={styles.stats}>
                         <div className={styles.stat}>
-                            <div className={styles.statNumber}>12+</div>
-                            <div className={styles.statLabel}>مشروع ناجح</div>
+                            <div className={styles.statNumber}>{t.hero.stat1Number}</div>
+                            <div className={styles.statLabel}>{t.hero.stat1Label}</div>
                         </div>
                         <div className={styles.stat}>
-                            <div className={styles.statNumber}>12+</div>
-                            <div className={styles.statLabel}>عميل سعيد</div>
+                            <div className={styles.statNumber}>{t.hero.stat2Number}</div>
+                            <div className={styles.statLabel}>{t.hero.stat2Label}</div>
                         </div>
                         <div className={styles.stat}>
-                            <div className={styles.statNumber}>100%</div>
-                            <div className={styles.statLabel}>رضا العملاء</div>
+                            <div className={styles.statNumber}>{t.hero.stat3Number}</div>
+                            <div className={styles.statLabel}>{t.hero.stat3Label}</div>
                         </div>
                     </div>
 
                     <div className={styles.cta}>
                         <button onClick={scrollToServices} className="btn btn-primary btn-lg">
-                            <span>تصفّح الخدمات</span>
+                            <span>{t.hero.ctaBrowse}</span>
                             <FontAwesomeIcon icon={getIcon('faRocket')} />
                         </button>
                         <button onClick={scrollToContact} className="btn btn-secondary btn-lg">
-                            <span>تواصل معنا</span>
+                            <span>{t.hero.ctaContact}</span>
                             <FontAwesomeIcon icon={getIcon('faComments')} />
                         </button>
                     </div>
@@ -76,27 +79,27 @@ export default function Hero() {
                     <div className={styles.features}>
                         <div className={styles.feature}>
                             <FontAwesomeIcon icon={getIcon('faBolt')} className={styles.featureIcon} />
-                            <span>سرعة فائقة</span>
+                            <span>{t.hero.featureSpeed}</span>
                         </div>
                         <div className={styles.feature}>
                             <FontAwesomeIcon icon={getIcon('faMobileAlt')} className={styles.featureIcon} />
-                            <span>متجاوب 100%</span>
+                            <span>{t.hero.featureResponsive}</span>
                         </div>
                         <div className={styles.feature}>
                             <FontAwesomeIcon icon={getIcon('faPalette')} className={styles.featureIcon} />
-                            <span>تصميم عصري</span>
+                            <span>{t.hero.featureDesign}</span>
                         </div>
                         <div className={styles.feature}>
                             <FontAwesomeIcon icon={getIcon('faLock')} className={styles.featureIcon} />
-                            <span>آمن تماماً</span>
+                            <span>{t.hero.featureSecurity}</span>
                         </div>
                         <div className={styles.feature}>
                             <FontAwesomeIcon icon={getIcon('faSearch')} className={styles.featureIcon} />
-                            <span>دعم محركات البحث</span>
+                            <span>{t.hero.featureSeo}</span>
                         </div>
                         <div className={styles.feature}>
                             <FontAwesomeIcon icon={getIcon('faPlus')} className={styles.featureIcon} />
-                            <span>خدمات اضافيه</span>
+                            <span>{t.hero.featureExtra}</span>
                         </div>
                     </div>
                 </div>
@@ -106,7 +109,7 @@ export default function Hero() {
                 <div className={styles.mouse}>
                     <div className={styles.wheel}></div>
                 </div>
-                <span>اسحب للأسفل</span>
+                <span>{t.hero.scrollDown}</span>
             </div>
         </section>
     );

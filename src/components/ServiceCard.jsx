@@ -1,56 +1,68 @@
 'use client';
 
-import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { addItem, openCart } from '@/features/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, removeItem, selectCartItems } from '@/features/cart/cartSlice';
 import { sendServiceInquiry } from '@/utils/whatsapp';
 import { getIcon } from '@/utils/icons';
+import { useTranslation } from '@/hooks/useTranslation';
 import styles from './ServiceCard.module.css';
 
 export default function ServiceCard({ service }) {
     const dispatch = useDispatch();
+    const cartItems = useSelector(selectCartItems);
+    const isInCart = cartItems.some(item => item.id === service.id);
+    const { t, currentLang } = useTranslation();
 
-    const handleAddToCart = () => {
-        dispatch(addItem({
-            id: service.id,
-            name: service.name,
-            price: service.price,
-            features: service.features
-        }));
-        dispatch(openCart());
+    // Helper to get translated field or fallback to Arabic
+    const getField = (fieldName) => {
+        const langSuffix = currentLang.charAt(0).toUpperCase() + currentLang.slice(1);
+        return service[`${fieldName}${langSuffix}`] || service[`${fieldName}Ar`];
     };
+
+    const displayName = getField('name');
+    const displayDescription = getField('description');
+    const displayDuration = getField('duration');
+    const displayBadge = getField('badge');
+    const displayFeatures = getField('features') || [];
 
     const handleWhatsAppInquiry = () => {
-        sendServiceInquiry(service.name, service.price);
+        sendServiceInquiry(displayName, currentLang);
     };
 
-    const isBasic = service.id === 'basic';
+    const toggleCart = () => {
+        if (isInCart) {
+            dispatch(removeItem(service.id));
+        } else {
+            dispatch(addItem({
+                id: service.id,
+                name: displayName,
+                price: service.price,
+                features: displayFeatures
+            }));
+        }
+    };
 
     return (
-        <div className={`${styles.card} ${service.badge ? styles.featured : ''}`}>
-            {service.badge && (
-                <div className={styles.badge}>{service.badge}</div>
-            )}
+        <div className={`${styles.card} ${service.badgeAr ? styles.featured : ''}`}>
+            {displayBadge && <div className={styles.badge}>{displayBadge}</div>}
 
-            <div className={styles.icon}>
-                <FontAwesomeIcon icon={getIcon(service.icon)} />
-            </div>
-
-            <h3 className={styles.name}>{service.name}</h3>
-            <p className={styles.description}>{service.description}</p>
+            <h3 className={styles.name}>{displayName}</h3>
 
             <div className={styles.pricing}>
-                <div className={styles.price}>${service.price}</div>
-                <div className={styles.currency}>USD</div>
+                <span className={styles.currency}>$</span>
+                <span className={styles.price}>{service.price}</span>
             </div>
 
             <div className={styles.duration}>
                 <FontAwesomeIcon icon={getIcon('faClock')} className={styles.durationIcon} />
-                <span>{service.duration}</span>
+                <span>{displayDuration}</span>
             </div>
 
+            <p className={styles.description}>{displayDescription}</p>
+
             <ul className={styles.features}>
-                {service.features.map((feature, index) => (
+                {displayFeatures.map((feature, index) => (
                     <li key={index} className={styles.feature}>
                         <FontAwesomeIcon icon={getIcon('faCheck')} className={styles.checkIcon} />
                         <span>{feature}</span>
@@ -59,18 +71,26 @@ export default function ServiceCard({ service }) {
             </ul>
 
             <div className={styles.actions}>
-                {!isBasic && (
-                    <button onClick={handleAddToCart} className="btn btn-primary">
-                        <span>أضف للسلة</span>
-                        <FontAwesomeIcon icon={getIcon('faShoppingCart')} />
-                    </button>
-                )}
+                <button
+                    onClick={toggleCart}
+                    className="btn btn-primary"
+                    style={{
+                        background: isInCart ? 'var(--color-error)' : 'var(--gradient-primary)',
+                        width: '100%',
+                        marginBottom: 'var(--spacing-sm)'
+                    }}
+                >
+                    <FontAwesomeIcon icon={getIcon(isInCart ? 'faTrash' : 'faCartPlus')} />
+                    <span>{isInCart ? t.cart.delete : t.pricing.addToCart}</span>
+                </button>
+
                 <button
                     onClick={handleWhatsAppInquiry}
-                    className={isBasic ? 'btn btn-primary' : 'btn btn-secondary'}
+                    className="btn btn-secondary"
+                    style={{ width: '100%' }}
                 >
-                    <span>{'استفسار'}</span>
-                    <FontAwesomeIcon icon={getIcon('faWhatsapp')} />
+                    <FontAwesomeIcon icon={getIcon('faComments')} />
+                    <span>{t.pricing.inquiry}</span>
                 </button>
             </div>
         </div>

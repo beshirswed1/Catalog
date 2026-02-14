@@ -2,16 +2,19 @@
 
 import { projects } from '@/data/projects';
 import ProjectCard from './ProjectCard';
+import { useTranslation } from '@/hooks/useTranslation';
 import styles from './ProjectsGallery.module.css';
 
 export default function ProjectsGallery() {
+    const { t } = useTranslation();
+
     return (
         <section id="projects" className="section">
             <div className="container">
                 <div className={styles.header}>
-                    <h2 className="section-title">مشاريعنا</h2>
+                    <h2 className="section-title">{t.projectsSection.title}</h2>
                     <p className={styles.subtitle}>
-                        تصفح مجموعة من المشاريع الناجحة التي أنجزناها لعملائنا
+                        {t.projectsSection.subtitle}
                     </p>
                 </div>
 

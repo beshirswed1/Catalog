@@ -12,6 +12,8 @@ import {
 } from '@/features/cart/cartSlice';
 import { sendCartOrder } from '@/utils/whatsapp';
 import { getIcon } from '@/utils/icons';
+import { useTranslation } from '@/hooks/useTranslation';
+import { getServiceById } from '@/data/services';
 import styles from './CartDrawer.module.css';
 
 export default function CartDrawer() {
@@ -19,10 +21,25 @@ export default function CartDrawer() {
     const isOpen = useSelector(selectCartIsOpen);
     const total = useSelector(selectCartTotal);
     const dispatch = useDispatch();
+    const { t, currentLang } = useTranslation();
+
+    const getTranslatedName = (item) => {
+        const service = getServiceById(item.id);
+        if (service) {
+            const langSuffix = currentLang.charAt(0).toUpperCase() + currentLang.slice(1);
+            return service[`name${langSuffix}`] || service[`nameAr`];
+        }
+        return item.name;
+    };
 
     const handleSendOrder = () => {
         if (items.length > 0) {
-            sendCartOrder(items, total);
+            // Re-map items with current translation for WhatsApp
+            const translatedItems = items.map(item => ({
+                ...item,
+                name: getTranslatedName(item)
+            }));
+            sendCartOrder(translatedItems, total, currentLang);
             dispatch(clearCart());
             dispatch(closeCart());
         }
@@ -38,12 +55,12 @@ export default function CartDrawer() {
                 <div className={styles.header}>
                     <h3 className={styles.title}>
                         <FontAwesomeIcon icon={getIcon('faShoppingCart')} />
-                        <span>سلة الطلبات</span>
+                        <span>{t.cart.title}</span>
                     </h3>
                     <button
                         onClick={() => dispatch(closeCart())}
                         className={styles.closeBtn}
-                        aria-label="إغلاق"
+                        aria-label={t.cart.close}
                     >
                         <FontAwesomeIcon icon={getIcon('faTimes')} />
                     </button>
@@ -53,8 +70,8 @@ export default function CartDrawer() {
                     {items.length === 0 ? (
                         <div className={styles.empty}>
                             <FontAwesomeIcon icon={getIcon('faShoppingCart')} className={styles.emptyIcon} />
-                            <p className={styles.emptyText}>السلة فارغة</p>
-                            <p className={styles.emptySubtext}>أضف خدمة لتبدأ</p>
+                            <p className={styles.emptyText}>{t.cart.empty}</p>
+                            <p className={styles.emptySubtext}>{t.cart.emptySubtext}</p>
                         </div>
                     ) : (
                         <>
@@ -62,11 +79,11 @@ export default function CartDrawer() {
                                 {items.map((item) => (
                                     <div key={item.id} className={styles.item}>
                                         <div className={styles.itemHeader}>
-                                            <h4 className={styles.itemName}>{item.name}</h4>
+                                            <h4 className={styles.itemName}>{getTranslatedName(item)}</h4>
                                             <button
                                                 onClick={() => dispatch(removeItem(item.id))}
                                                 className={styles.removeBtn}
-                                                aria-label="حذف"
+                                                aria-label={t.cart.delete}
                                             >
                                                 <FontAwesomeIcon icon={getIcon('faTrash')} />
                                             </button>
@@ -80,26 +97,13 @@ export default function CartDrawer() {
                                                 ${item.price * item.quantity} USD
                                             </div>
                                         </div>
-
-                                        {item.features && item.features.length > 0 && (
-                                            <ul className={styles.itemFeatures}>
-                                                {item.features.slice(0, 3).map((feature, index) => (
-                                                    <li key={index}>
-                                                        <FontAwesomeIcon icon={getIcon('faCheck')} /> {feature}
-                                                    </li>
-                                                ))}
-                                                {item.features.length > 3 && (
-                                                    <li>+ {item.features.length - 3} ميزة أخرى</li>
-                                                )}
-                                            </ul>
-                                        )}
                                     </div>
                                 ))}
                             </div>
 
                             <div className={styles.footer}>
                                 <div className={styles.total}>
-                                    <span className={styles.totalLabel}>المجموع الكلي:</span>
+                                    <span className={styles.totalLabel}>{t.cart.total}</span>
                                     <span className={styles.totalAmount}>${total} USD</span>
                                 </div>
 
@@ -108,7 +112,7 @@ export default function CartDrawer() {
                                     className="btn btn-primary"
                                     style={{ width: '100%' }}
                                 >
-                                    <span>أرسل الطلب عبر واتساب</span>
+                                    <span>{t.cart.sendOrder}</span>
                                     <FontAwesomeIcon icon={getIcon('faWhatsapp')} />
                                 </button>
 
@@ -117,7 +121,7 @@ export default function CartDrawer() {
                                     className="btn btn-secondary"
                                     style={{ width: '100%' }}
                                 >
-                                    <span>إفراغ السلة</span>
+                                    <span>{t.cart.clearCart}</span>
                                     <FontAwesomeIcon icon={getIcon('faTrash')} />
                                 </button>
                             </div>

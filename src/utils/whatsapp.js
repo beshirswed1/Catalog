@@ -1,5 +1,5 @@
 // رقم الواتساب - يمكن تغييره حسب الحاجة
-const WHATSAPP_NUMBER = '905377906230'; // استبدل بالرقم الحقيقي
+const WHATSAPP_NUMBER = '905377906230';
 
 /**
  * فتح رابط واتساب مع رسالة محددة
@@ -12,108 +12,144 @@ export const sendToWhatsApp = (message) => {
 };
 
 /**
- * بناء رسالة طلب من السلة
- * @param {Array} items - عناصر السلة
- * @param {number} total - المجموع الكلي
- * @returns {string} - الرسالة المنسقة
+ * بناء رسالة طلب من السلة بمختلف اللغات
  */
-export const buildOrderMessage = (items, total) => {
-    let message = '🛒 *طلب جديد من الموقع*\n\n';
+export const buildOrderMessage = (items, total, lang = 'ar') => {
+    const t = {
+        ar: {
+            header: '🛒 *طلب جديد من الموقع*',
+            details: '📋 *تفاصيل الطلب:*',
+            price: 'السعر',
+            quantity: 'الكمية',
+            total: 'المجموع',
+            grandTotal: 'المجموع الكلي',
+            footer: '✨ شكراً لاختياركم خدماتنا!\nسنتواصل معكم قريباً لتأكيد الطلب.'
+        },
+        tr: {
+            header: '🛒 *Siteden Yeni Sipariş*',
+            details: '📋 *Sipariş Detayları:*',
+            price: 'Fiyat',
+            quantity: 'Adet',
+            total: 'Toplam',
+            grandTotal: 'Genel Toplam',
+            footer: '✨ Hizmetlerimizi seçtiğiniz için teşekkürler!\nSiparişinizi onaylamak için yakında sizinle iletişime geçeceğiz.'
+        },
+        en: {
+            header: '🛒 *New Order from Website*',
+            details: '📋 *Order Details:*',
+            price: 'Price',
+            quantity: 'Quantity',
+            total: 'Total',
+            grandTotal: 'Grand Total',
+            footer: '✨ Thank you for choosing our services!\nWe will contact you soon to confirm your order.'
+        }
+    };
 
-    message += '📋 *تفاصيل الطلب:*\n';
+    const strings = t[lang] || t.ar;
+    let message = `${strings.header}\n\n`;
+    message += `${strings.details}\n`;
     message += '━━━━━━━━━━━━━━━\n\n';
 
     items.forEach((item, index) => {
         message += `${index + 1}. *${item.name}*\n`;
-        message += `   💰 السعر: $${item.price} USD\n`;
-        message += `   🔢 الكمية: ${item.quantity}\n`;
-        message += `   💵 المجموع: $${item.price * item.quantity} USD\n\n`;
+        message += `   💰 ${strings.price}: $${item.price} USD\n`;
+        message += `   🔢 ${strings.quantity}: ${item.quantity}\n`;
+        message += `   💵 ${strings.total}: $${item.price * item.quantity} USD\n\n`;
     });
 
     message += '━━━━━━━━━━━━━━━\n';
-    message += `💎 *المجموع الكلي: $${total} USD*\n\n`;
-    message += '✨ شكراً لاختياركم خدماتنا!\n';
-    message += 'سنتواصل معكم قريباً لتأكيد الطلب.';
+    message += `💎 *${strings.grandTotal}: $${total} USD*\n\n`;
+    message += strings.footer;
 
     return message;
 };
 
 /**
  * بناء رسالة استفسار عن خدمة
- * @param {string} serviceName - اسم الخدمة
- * @param {number} price - سعر الخدمة
- * @returns {string} - الرسالة المنسقة
  */
-export const buildServiceInquiry = (serviceName, price) => {
-    let message = '👋 مرحباً!\n\n';
-    message += `أرغب في الاستفسار عن خدمة:\n`;
-    message += `📦 *${serviceName}*\n`;
-    message += `💰 السعر: $${price} USD\n\n`;
-    message += 'أرجو التواصل معي لمزيد من التفاصيل.';
+export const buildServiceInquiry = (serviceName, lang = 'ar') => {
+    const t = {
+        ar: {
+            hi: '👋 مرحباً!',
+            inquiry: 'أرغب في الاستفسار عن خدمة:',
+            contact: 'أرجو التواصل معي لمزيد من التفاصيل.'
+        },
+        tr: {
+            hi: '👋 Merhaba!',
+            inquiry: 'Şu hizmet hakkında bilgi almak istiyorum:',
+            contact: 'Detaylar için benimle iletişime geçmenizi rica ederim.'
+        },
+        en: {
+            hi: '👋 Hello!',
+            inquiry: 'I would like to inquire about:',
+            contact: 'Please contact me for more details.'
+        }
+    };
+
+    const strings = t[lang] || t.ar;
+    let message = `${strings.hi}\n\n`;
+    message += `${strings.inquiry}\n`;
+    message += `📦 *${serviceName}*\n\n`;
+    message += strings.contact;
 
     return message;
 };
 
 /**
  * بناء رسالة استفسار عن مشروع مشابه
- * @param {string} projectTitle - عنوان المشروع
- * @returns {string} - الرسالة المنسقة
  */
-export const buildProjectInquiry = (projectTitle) => {
-    let message = '👋 مرحباً!\n\n';
-    message += `شاهدت مشروع:\n`;
+export const buildProjectInquiry = (projectTitle, lang = 'ar') => {
+    const t = {
+        ar: {
+            hi: '👋 مرحباً!',
+            saw: 'شاهدت مشروع:',
+            request: 'وأرغب في طلب مشروع مشابه.',
+            discuss: 'هل يمكننا مناقشة التفاصيل؟'
+        },
+        tr: {
+            hi: '👋 Merhaba!',
+            saw: 'Şu projeyi inceledim:',
+            request: 'Benzer bir proje talep etmek istiyorum.',
+            discuss: 'Detayları görüşebilir miyiz?'
+        },
+        en: {
+            hi: '👋 Hello!',
+            saw: 'I saw your project:',
+            request: 'I would like to request a similar project.',
+            discuss: 'Can we discuss the details?'
+        }
+    };
+
+    const strings = t[lang] || t.ar;
+    let message = `${strings.hi}\n\n`;
+    message += `${strings.saw}\n`;
     message += `🎯 *${projectTitle}*\n\n`;
-    message += 'وأرغب في طلب مشروع مشابه.\n';
-    message += 'هل يمكننا مناقشة التفاصيل؟';
+    message += `${strings.request}\n`;
+    message += strings.discuss;
 
     return message;
 };
 
-/**
- * بناء رسالة استفسار عامة
- * @returns {string} - الرسالة المنسقة
- */
-export const buildGeneralInquiry = () => {
-    let message = '👋 مرحباً!\n\n';
-    message += 'أرغب في الاستفسار عن خدماتكم.\n';
-    message += 'هل يمكننا التحدث؟';
-
-    return message;
-};
-
-/**
- * إرسال طلب من السلة عبر واتساب
- * @param {Array} items - عناصر السلة
- * @param {number} total - المجموع الكلي
- */
-export const sendCartOrder = (items, total) => {
-    const message = buildOrderMessage(items, total);
+export const sendCartOrder = (items, total, lang = 'ar') => {
+    const message = buildOrderMessage(items, total, lang);
     sendToWhatsApp(message);
 };
 
-/**
- * إرسال استفسار عن خدمة عبر واتساب
- * @param {string} serviceName - اسم الخدمة
- * @param {number} price - سعر الخدمة
- */
-export const sendServiceInquiry = (serviceName, price) => {
-    const message = buildServiceInquiry(serviceName, price);
+export const sendServiceInquiry = (serviceName, lang = 'ar') => {
+    const message = buildServiceInquiry(serviceName, lang);
     sendToWhatsApp(message);
 };
 
-/**
- * إرسال استفسار عن مشروع عبر واتساب
- * @param {string} projectTitle - عنوان المشروع
- */
-export const sendProjectInquiry = (projectTitle) => {
-    const message = buildProjectInquiry(projectTitle);
+export const sendProjectInquiry = (projectTitle, lang = 'ar') => {
+    const message = buildProjectInquiry(projectTitle, lang);
     sendToWhatsApp(message);
 };
 
-/**
- * إرسال استفسار عام عبر واتساب
- */
-export const sendGeneralInquiry = () => {
-    const message = buildGeneralInquiry();
-    sendToWhatsApp(message);
+export const sendGeneralInquiry = (lang = 'ar') => {
+    const t = {
+        ar: '👋 مرحباً!\n\nأرغب في الاستفسار عن خدماتكم.\nهل يمكننا التحدث؟',
+        tr: '👋 Merhaba!\n\nHizmetleriniz hakkında bilgi almak istiyorum.\nGörüşebilir miyiz?',
+        en: '👋 Hello!\n\nI would like to inquire about your services.\nCan we talk?'
+    };
+    sendToWhatsApp(t[lang] || t.ar);
 };

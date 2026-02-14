@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toggleCart, selectCartCount } from '@/features/cart/cartSlice';
 import { getIcon } from '@/utils/icons';
+import { useTranslation } from '@/hooks/useTranslation';
+import LanguageSwitcher from './LanguageSwitcher';
 import styles from './Navbar.module.css';
 import Link from 'next/link';
 
@@ -13,6 +15,7 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const cartCount = useSelector(selectCartCount);
     const dispatch = useDispatch();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -38,80 +41,85 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link href="/" className={styles.logo}>
                         <FontAwesomeIcon icon={getIcon('faBriefcase')} className={styles.logoIcon} />
-                        <span className={styles.logoText}>الكاتالوج</span>
+                        <span className={styles.logoText}>{t.nav.logo}</span>
                     </Link>
 
                     {/* Desktop Menu */}
                     <ul className={styles.navMenu}>
                         <li>
                             <button onClick={() => scrollToSection('hero')} className={styles.navLink}>
-                                الرئيسية
+                                {t.nav.home}
                             </button>
                         </li>
                         <li>
                             <button onClick={() => scrollToSection('services')} className={styles.navLink}>
-                                الخدمات
+                                {t.nav.services}
                             </button>
                         </li>
                         <li>
                             <button onClick={() => scrollToSection('projects')} className={styles.navLink}>
-                                المشاريع
+                                {t.nav.projects}
                             </button>
                         </li>
                         <li>
                             <button onClick={() => scrollToSection('skills')} className={styles.navLink}>
-                                المهارات
+                                {t.nav.skills}
                             </button>
                         </li>
                         <li>
                             <button onClick={() => scrollToSection('contact')} className={styles.navLink}>
-                                تواصل معنا
+                                {t.nav.contact}
                             </button>
                         </li>
                     </ul>
 
-                    {/* Cart Button */}
-                    <button
-                        onClick={() => dispatch(toggleCart())}
-                        className={styles.cartButton}
-                        aria-label="عربة التسوق"
-                    >
-                        <FontAwesomeIcon icon={getIcon('faShoppingCart')} className={styles.cartIcon} />
-                        {cartCount > 0 && (
-                            <span className={styles.cartBadge}>{cartCount}</span>
-                        )}
-                    </button>
+                    <div className={styles.navActions}>
+                        {/* Language Switcher */}
+                        <LanguageSwitcher />
 
-                    {/* Mobile Menu Toggle */}
-                    <button
-                        className={styles.mobileMenuToggle}
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        aria-label="القائمة"
-                    >
-                        <FontAwesomeIcon
-                            icon={getIcon(isMobileMenuOpen ? 'faTimes' : 'faBars')}
-                            className={styles.hamburger}
-                        />
-                    </button>
+                        {/* Cart Button */}
+                        <button
+                            onClick={() => dispatch(toggleCart())}
+                            className={styles.cartButton}
+                            aria-label={t.nav.cart}
+                        >
+                            <FontAwesomeIcon icon={getIcon('faShoppingCart')} className={styles.cartIcon} />
+                            {cartCount > 0 && (
+                                <span className={styles.cartBadge}>{cartCount}</span>
+                            )}
+                        </button>
+
+                        {/* Mobile Menu Toggle */}
+                        <button
+                            className={styles.mobileMenuToggle}
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label={t.nav.menu}
+                        >
+                            <FontAwesomeIcon
+                                icon={getIcon(isMobileMenuOpen ? 'faTimes' : 'faBars')}
+                                className={styles.hamburger}
+                            />
+                        </button>
+                    </div>
                 </div>
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
                     <div className={styles.mobileMenu}>
                         <button onClick={() => scrollToSection('hero')} className={styles.mobileNavLink}>
-                            الرئيسية
+                            {t.nav.home}
                         </button>
                         <button onClick={() => scrollToSection('services')} className={styles.mobileNavLink}>
-                            الخدمات
+                            {t.nav.services}
                         </button>
                         <button onClick={() => scrollToSection('projects')} className={styles.mobileNavLink}>
-                            المشاريع
+                            {t.nav.projects}
                         </button>
                         <button onClick={() => scrollToSection('skills')} className={styles.mobileNavLink}>
-                            المهارات
+                            {t.nav.skills}
                         </button>
                         <button onClick={() => scrollToSection('contact')} className={styles.mobileNavLink}>
-                            تواصل معنا
+                            {t.nav.contact}
                         </button>
                     </div>
                 )}

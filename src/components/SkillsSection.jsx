@@ -1,41 +1,55 @@
 'use client';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { skills } from '@/data/skills';
+import { skills, skillCategories } from '@/data/skills';
 import { getIcon } from '@/utils/icons';
+import { useTranslation } from '@/hooks/useTranslation';
 import styles from './SkillsSection.module.css';
 
 export default function SkillsSection() {
+    const { t, currentLang } = useTranslation();
+
+    const getField = (item, fieldName) => {
+        const langSuffix = currentLang.charAt(0).toUpperCase() + currentLang.slice(1);
+        return item[`${fieldName}${langSuffix}`] || item[`${fieldName}Ar`];
+    };
+
     return (
-        <section id="skills" className="section">
+        <section className={styles.skills} id="skills">
             <div className="container">
-                <div className={styles.header}>
-                    <h2 className="section-title">مهاراتنا التقنية</h2>
-                    <p className={styles.subtitle}>
-                        نستخدم أحدث التقنيات لبناء حلول ويب عصرية وفعالة
-                    </p>
+                <div className={styles.sectionHeader}>
+                    <h2 className={styles.title}>{t.skillsSection.title}</h2>
+                    <p className={styles.subtitle}>{t.skillsSection.subtitle}</p>
                 </div>
 
-                <div className={styles.grid}>
-                    {skills.map((skill) => (
-                        <div key={skill.id} className={styles.skillCard}>
-                            <div className={styles.skillHeader}>
-                                <div className={styles.skillIcon}>
-                                    <FontAwesomeIcon icon={getIcon(skill.icon)} />
-                                </div>
-                                <div className={styles.skillInfo}>
-                                    <h4 className={styles.skillName}>{skill.name}</h4>
-                                    <p className={styles.skillDescription}>{skill.description}</p>
-                                </div>
+                <div className={styles.categoriesGrid}>
+                    {skillCategories.map((category) => (
+                        <div key={category.id} className={styles.categoryCard}>
+                            <div className={styles.categoryHeader}>
+                                <FontAwesomeIcon icon={getIcon(category.icon)} className={styles.categoryIcon} />
+                                <h3 className={styles.categoryName}>{getField(category, 'name')}</h3>
                             </div>
 
-                            <div className={styles.progressBar}>
-                                <div
-                                    className={styles.progressFill}
-                                    style={{ width: `${skill.level}%` }}
-                                >
-                                    <span className={styles.progressLabel}>{skill.level}%</span>
-                                </div>
+                            <div className={styles.skillsList}>
+                                {skills
+                                    .filter(skill => skill.category === category.id)
+                                    .map(skill => (
+                                        <div key={skill.id} className={styles.skillItem}>
+                                            <div className={styles.skillMain}>
+                                                <FontAwesomeIcon icon={getIcon(skill.icon)} className={styles.skillIcon} />
+                                                <span className={styles.skillName}>{skill.name}</span>
+                                                <span className={styles.skillLevel}>{skill.level}%</span>
+                                            </div>
+                                            <div className={styles.skillBar}>
+                                                <div
+                                                    className={styles.skillProgress}
+                                                    style={{ width: `${skill.level}%` }}
+                                                />
+                                            </div>
+                                            <p className={styles.skillDesc}>{getField(skill, 'description')}</p>
+                                        </div>
+                                    ))
+                                }
                             </div>
                         </div>
                     ))}
